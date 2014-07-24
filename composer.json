@@ -4,7 +4,8 @@
     "keywords": ["sphinx", "faceted", "search"],
     "license": "MIT",
     "require": {
-        "php": ">=5.3.2"
+        "php": ">=5.3.2",
+        "doctrine/common": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
