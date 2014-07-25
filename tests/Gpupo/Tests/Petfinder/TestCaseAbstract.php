@@ -61,7 +61,7 @@ abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
 
         return $this->assertTrue($contain, $message, $string);
     }
-    
+
    /**
     * Asserts that a string contains one of keywords
     *
@@ -71,12 +71,11 @@ abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
     * </code>
     * @param  array $keywords
     * @param  string $string
-    * @param  string $message    
+    * @param  string $message
     */
     public function assertStringContainsOneOrMore(array $keywords, $string, $message = '')
     {
         return $this->assertStringContains(current($keywords), $string, $message, $keywords);
     }
-    
-}
 
+}

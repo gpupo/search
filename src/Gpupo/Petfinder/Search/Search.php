@@ -42,7 +42,7 @@ class Search  extends SearchAbstract implements SearchInterface
         );
 
         $paginator = new Paginator;
-        
+
         if ($query->getPaginator()) {
             $page = $query->getPaginator()->getPage();
         } else {
@@ -96,16 +96,16 @@ class Search  extends SearchAbstract implements SearchInterface
 
         return $collection;
     }
-    
+
     /**
      * Acesso ao Client Sphinx Search
-     * 
+     *
      * @return \SphinxClient
-     * 
+     *
      */
     public function getSphinxClient()
     {
         return SphinxService::getInstance()->getFreshClient();
     }
-    
+
  }

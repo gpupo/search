@@ -3,7 +3,7 @@
 namespace Gpupo\Petfinder\Search\Result;
 
 abstract class ItemAbstract extends \Gpupo\Petfinder\Search\Core\CollectionAbstract
-{ 
+{
     /**
      * Acesso aos atributos fornecidos pelo SphinxSearch
      *

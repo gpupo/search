@@ -10,7 +10,7 @@
 
 namespace Gpupo\Petfinder\Search\Core;
 
-interface RegisterableInterface 
+interface RegisterableInterface
 {
     public function toLog();
 }

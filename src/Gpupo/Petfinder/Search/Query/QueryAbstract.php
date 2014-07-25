@@ -11,7 +11,6 @@
 namespace Gpupo\Petfinder\Search\Query;
 
 use Gpupo\Petfinder\Search\Core\CollectionAbstract;
-use Gpupo\Petfinder\Search\Query\FiltersInterface;
 use Gpupo\Petfinder\Search\Paginator\PaginableInterface;
 use Gpupo\Petfinder\Search\Paginator\PaginatorInterface;
 
@@ -36,7 +35,7 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
 
         return $this;
     }
-    
+
     /**
      *
      * @param \Gpupo\Petfinder\Search\Query\KeywordsInterface $keywords
@@ -80,13 +79,13 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
 
     /**
      * Acesso a um conjunto de KeywordsInterface
-     *      
+     *
      * @todo Evoluir o uso da busca facetada para mais de uma Keyword
      */
     public function getKeywords()
     {
         $keywords =  $this->get('keywords');
-        
+
         return $keywords;
     }
 
@@ -98,12 +97,12 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
 
         return null;
     }
-    
+
     /**
      * SphinxSearch Queries Array
-     * 
+     *
      * <code>
-     * 
+     *
      * //Search single query sintaxe:
      * array(
      *     array(
@@ -133,9 +132,9 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
      *     ),
      *     ...
      * );
-     * 
+     *
      * </code>
-     * 
+     *
      */
     public function getQueries()
     {
@@ -152,9 +151,9 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     * 
+     *
      * Field weights sintaxe:
-     * 
+     *
      * <code>
      *
      * array(
@@ -172,7 +171,7 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
 
     /**
      * Acesso a quantidade de itens por pagina
-     * 
+     *
      * @return integer
      */
     public function getLimit()
@@ -185,12 +184,12 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     * Offsets the result list by the number of places set by the count; 
-     * 
+     * Offsets the result list by the number of places set by the count;
+     *
      * This would be used for pagination through results, where if you have 20
-     * results per 'page', the second page would begin at offset 20, the third 
+     * results per 'page', the second page would begin at offset 20, the third
      * page at offset 40, etc.
-     * 
+     *
      * @return integer
      */
     public function getOffSet()
@@ -276,13 +275,13 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     * 
+     *
      * @return \Gpupo\Petfinder\Search\Paginator\PaginatorInterface|boolean
      */
     public function getPaginator()
     {
         $paginator = $this->get('paginator');
-        
+
         if ($paginator instanceof PaginatorInterface) {
             return $paginator;
         } else {
@@ -294,37 +293,37 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     {
         return $this->set('paginator', $paginator);
     }
-    
+
     public function getCountableAttributes()
     {
         return $this->get('countableAttributes');
     }
-    
+
     /**
      * Adiciona um atributo para contagem de resultados
-     * 
+     *
      * Usado na busca facetada
-     * 
-     * @param  string $attribute
+     *
+     * @param  string  $attribute
      * @return boolean
      */
     public function addCountableAttribute($attribute)
-    {       
+    {
         if (empty($attribute)) {
             return false;
         }
-        
+
         if (in_array($attribute, $this->getCountableAttributes())) {
             return false;
         }
         $this->addToArrayValue('countableAttributes', $attribute);
-        
+
         return $this;
     }
-    
+
     /**
      * Adiciona muitos atributos para contagem de resultados
-     * 
+     *
      * @param array $attributes
      */
     public function setCountableAttributes(array $attributes)
@@ -332,7 +331,7 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
         foreach ($attributes as $attribute) {
             $this->addCountableAttribute($attribute);
         }
-        
+
         return $this;
     }
 }

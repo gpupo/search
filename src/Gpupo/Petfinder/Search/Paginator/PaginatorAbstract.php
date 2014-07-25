@@ -72,12 +72,12 @@ abstract class PaginatorAbstract
     }
 
     /**
-     * Offsets the result list by the number of places set by the count; 
-     * 
+     * Offsets the result list by the number of places set by the count;
+     *
      * This would be used for pagination through results, where if you have 20
-     * results per 'page', the second page would begin at offset 20, the third 
+     * results per 'page', the second page would begin at offset 20, the third
      * page at offset 40, etc.
-     * 
+     *
      * @return integer
      */
     public function getOffset()
@@ -87,7 +87,7 @@ abstract class PaginatorAbstract
 
     /**
      * Processa os valors de resultado
-     * 
+     *
      * @param integer $numTotal
      * @param integer $page
      * @param integer $limit
@@ -103,8 +103,7 @@ abstract class PaginatorAbstract
     {
         return intval(ceil($this->getTotalItemCount() / $this->getItemNumberPerPage()));
     }
-    
-    
+
     /**
      * Pagination page range
      *
@@ -117,7 +116,7 @@ abstract class PaginatorAbstract
 
     /**
      * Pagination page range
-     * 
+     *
      * @return integer
      */
     public function getPageRange()

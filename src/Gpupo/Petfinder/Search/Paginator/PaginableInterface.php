@@ -15,5 +15,5 @@ interface PaginableInterface
     public function getPaginator();
 
     public function setPaginator(PaginatorInterface $paginator);
-   
+
 }
