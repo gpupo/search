@@ -60,3 +60,28 @@ The recommended way to install is [through composer](http://getcomposer.org).
 
  	lynx --dump --source https://sphinxsearch.googlecode.com/svn/trunk/api/sphinxapi.php > \
  	src/Gpupo/Petfinder/Sphinx/sphinxapi.php
+
+## Search Patterns - A Mapmaker’s Manifesto
+
+by Peter Moreville and Jeffrey Callender
+
+* Search is a problem too big to ignore.
+* Browsing doesn’t scale, even on an IPhone.
+* Size matters. Linear growth compels a step change in design.
+* Simple, fast, and relevant are table stakes.
+* One size won’t fit all. Search must adapt to context.
+* Search in iterative, social, and multisensory.
+* Increments aren’t enough. Even Google must innovate or die.
+* It’s not just about findability. It’s not just about the Web.
+* The challenge is radically multidisciplinary.
+* We must engage engineers and executives in design.
+* We can learn from the past. Library science is still relevant.
+* We can learn from behavior. Interaction design affords actionable results.
+* We can learn from one user. Analytics is enriched by ethnography.
+* Some patterns, we should study and reuse.
+* Some patterns, we should break like a bad habit.
+* Search is a complex adaptive system.
+* Emergence, cocreation, and self-organization are in play.
+* To discover the seeds of change, go outside.
+* In science, fiction, and search, the map invents the territory.
+* The future isn’t just unwritten—it’s unsearched.
