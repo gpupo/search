@@ -28,17 +28,23 @@ In case the facet counts is not desired, there is another optimization that can 
 
 ### Simple Query Usage
 
-        use Gpupo\Petfinder\Search\Search;
-        use Gpupo\Petfinder\Query\Keywords;
-        use Gpupo\Petfinder\Query\Query;
+```php
 
-        $keywords = new Keywords;
-        $keywords->addKeyword('magic');
-        $keywords->addKeyword('unicorn');
-        $query = new Query($keywords);
-        $query->setIndex('fantasyIndex');
+<?php
 
-        $totalItens =  Search::getInstance()->findByQuery($query)->getTotal();
+use Gpupo\Petfinder\Search\Search;
+use Gpupo\Petfinder\Query\Keywords;
+use Gpupo\Petfinder\Query\Query;
+
+$keywords = new Keywords;
+$keywords->addKeyword('magic');
+$keywords->addKeyword('unicorn');
+$query = new Query($keywords);
+$query->setIndex('fantasyIndex');
+
+$totalItens =  Search::getInstance()->findByQuery($query)->getTotal();
+
+```
 
 ## Install
 
