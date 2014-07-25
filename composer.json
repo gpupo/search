@@ -1,5 +1,5 @@
 {
-    "name": "gpupo/sfs",
+    "name": "gpupo/petfinder",
     "description": "Sphinx Faceted Search",
     "keywords": ["sphinx", "faceted", "search"],
     "license": "MIT",
@@ -13,7 +13,7 @@
         "phpunit/phpunit": "*"
     },
     "autoload": {
-        "psr-0": { "Gpupo\\Sfs": "src" }
+        "psr-0": { "Gpupo\\Petfinder": "src" }
     },
     "extra": {
         "branch-alias": {
