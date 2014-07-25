@@ -2,7 +2,6 @@
 
 PHP Sphinx faceted search with oriented object results based
 
-
 ### Faceted Navigation
 
 Os refinadores são baseados em propriedades gerenciadas do índice de pesquisa.
@@ -10,8 +9,7 @@ Para usar propriedades gerenciadas como refinadores, elas devem ser ativadas com
 Navegação facetada é o processo de procurar o conteúdo filtrando em refinadores vinculados às páginas de categoria.
 Ela permite especificar refinadores diferentes para as páginas de categoria, mesmo quando a página subjacente que exibe as categorias é a mesma.
 
-
-![](http://raw.githubusercontent.com/gpupo/petfinder/master/Resources/doc/search_query.png)
+[[/Resources/doc/search_query.png]]
 
 ### What faceting means in Sphinx
 
@@ -53,7 +51,7 @@ The recommended way to install is [through composer](http://getcomposer.org).
 ```JSON
 {
     "require": {
-        "gpupo/similarity": "1.*"
+        "gpupo/petfinder": "1.*"
     }
 }
 ```
