@@ -11,12 +11,12 @@ class SphinxServiceTest extends TestCaseAbstract
     public function testPermiteAcessoAosParametrosDefault()
     {
         $parameters = SphinxService::getInstance()->getParameters();
-        
+
         foreach (array('host', 'port', 'timeout') as $key) {
             $this->assertTrue($parameters->offsetExists($key));
         }
     }
-    
+
     public function testPermiteDefinicaoDeParametrosPersonalizados()
     {
         $array = array(
@@ -24,10 +24,10 @@ class SphinxServiceTest extends TestCaseAbstract
             'port'      => 9312,
             'timeout'   => 5,
         );
-            
+
         $parameters = SphinxService::getInstance()->setParameters($array)
             ->getParameters();
-        
+
         foreach ($array as $key => $value) {
             $this->assertTrue($parameters->offsetExists($key));
             $this->assertEquals($value, $parameters->get($key));

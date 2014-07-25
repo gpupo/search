@@ -86,7 +86,7 @@ abstract class CollectionAbstract  extends CoreCollectionAbstract
     {
 
     }
-    
+
     /**
      *
      * @return ItemInterface

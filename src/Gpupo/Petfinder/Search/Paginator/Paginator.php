@@ -21,7 +21,7 @@ class Paginator extends PaginatorAbstract implements PaginatorInterface
         if (!$limit) {
             throw new \LogicException("Invalid item per page number, must be a positive number");
         }
-        
+
         $this->paginate($collection->getTotalFound(), $page, $limit);
 
         return $this;
@@ -30,7 +30,7 @@ class Paginator extends PaginatorAbstract implements PaginatorInterface
     public function getPaginationData()
     {
         $pages = $this->getPages();
-       
+
         $viewData = array(
             'last'              => $this->getPagesCount(),
             'current'           => $this->getCurrentPageNumber(),
@@ -51,17 +51,16 @@ class Paginator extends PaginatorAbstract implements PaginatorInterface
         $viewData['firstPageInRange'] = min($pages);
         $viewData['lastPageInRange']  = max($pages);
 
-        
         return $viewData;
     }
-    
+
     /**
      * Acesso ao range de paginas para navegacao
-     * 
+     *
      * @return array
      */
     public function getPages()
-    {        
+    {
         if ($this->getPageRange() > $this->getPagesCount()) {
             $this->setPageRange($this->getPagesCount());
         }

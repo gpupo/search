@@ -35,7 +35,7 @@ abstract class SearchAbstract
 
     /**
      * Executa Queries
-     * 
+     *
      * @see \Gpupo\Petfinder\Search\Query\FiltersAbstract::toArray()          Filter Array Sintaxe
      * @see \Gpupo\Petfinder\Search\Query\QueryAbstract::getQueries()         Query Array Sintaxe
      * @see \Gpupo\Petfinder\Search\Query\QueryAbstract::getFieldWeights()    Query Array Sintaxe
@@ -44,7 +44,7 @@ abstract class SearchAbstract
      * @param  array   $fieldWeights Field weights array
      * @param  integer $limit
      * @param  integer $offset
-     * @return array   Results      
+     * @return array   Results
      */
     public function query ($index, array $filters = null,
         array $queries = null, array $fieldWeights = null,
@@ -80,17 +80,17 @@ abstract class SearchAbstract
         }
         if (null !== $queries) {
             foreach ($queries as $key => $queryInfo) {
-                
+
                 $query = $this->implodeQueryValues($queryInfo);
-                
+
                 if (array_key_exists('countableAttributes', $queryInfo)) {
-                    
+
                     $array = $queryInfo['countableAttributes'];
                     if (!is_array($array)) {
                         $array = array($array);
                     }
-                    
-                    $sphinxClient->addFacetedQuery($query, $index, $array);        
+
+                    $sphinxClient->addFacetedQuery($query, $index, $array);
                 } else {
                     $sphinxClient->AddQuery($query, $index);
                 }
@@ -101,7 +101,6 @@ abstract class SearchAbstract
             $sphinxClient->SetFieldWeights($fieldWeights);
         }
 
-        
         $result = $this->getResult($sphinxClient);
 
         return $result;
@@ -109,13 +108,13 @@ abstract class SearchAbstract
 
     /**
      * RunQueries() + validate
-     * 
+     *
      * - Single Query: Resultados da Query
-     * 
+     *
      * - Multi Query:  Array de Resultados das Querys
      *
      * Formato de cada Resultado:
-     * 
+     *
      * <code>
      * //Results
      * array(
@@ -132,16 +131,16 @@ abstract class SearchAbstract
      *     ...
      * );
      * </code>
-     * 
-     * @param \SphinxClient $sphinxClient
+     *
+     * @param  \SphinxClient $sphinxClient
      * @return array
      * @throws \Exception
      */
     protected function getResult(\SphinxClient $sphinxClient)
     {
-        
+
         $result = $sphinxClient->RunQueries();
-        
+
         if (false === $result) {
             throw new \Exception(
                 $sphinxClient->getLastError()
@@ -163,33 +162,33 @@ abstract class SearchAbstract
                 $sphinxClient->GetLastWarning()
             );
         }
-        
+
         //Suporte ao formato inicial de unica query
         if (count($result) == 1) {
             return current($result);
         }
-        
+
         return $result;
     }
-    
+
     /**
      * Transforma uma query array em uma string usada na
      * query do Client Sphinx Search
-     * 
+     *
      * @param  array  $queryInfo
      * @return string
      */
     protected function implodeQueryValues(array $queryInfo)
     {
-        $query = "@{$queryInfo['key']} " 
+        $query = "@{$queryInfo['key']} "
             . (
-                '*' . implode('* *', $queryInfo['values']) 
+                '*' . implode('* *', $queryInfo['values'])
                 . '*'
             ) . PHP_EOL;
-        
-        return $query;        
+
+        return $query;
     }
-    
+
     /**
      * Facade para query, obtendo resultados em objeto
      */

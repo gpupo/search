@@ -15,7 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 abstract class CollectionAbstract extends ArrayCollection
 {
     protected static $_instance;
-    
+
     /**
      * Permite acesso a instancia dinamica
      */

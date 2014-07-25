@@ -77,30 +77,29 @@ abstract class FiltersAbstract
 
         return $this->add($array);
     }
-    
+
     /**
      * Adiciona um filtro a partir de string no formato 0-10 (inicio - fim)
-     * 
+     *
      * @param string $key
-     * @param string $string     
+     * @param string $string
      */
     public function addStringRangeFilter($key, $string)
     {
         $array = explode('-', trim($string));
-        
+
         $min = intval($array[0]);
         if (empty($min)) {
             $min = 1;
         }
-        
+
         $max = intval($array[1]);
         if (empty($max)) {
             $max = 9999;
         }
-        
+
         return $this->addRangeFilter($key, $min, $max);
     }
-    
 
     public function addRangeFilter($key, $min, $max)
     {

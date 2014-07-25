@@ -15,31 +15,31 @@ use Doctrine\Common\Collections\ArrayCollection;
 class SphinxService
 {
     protected static $_instance;
-    
+
     protected $client;
-    
+
     protected $parameters;
-    
+
     public function setParameters(Array $array)
     {
         $this->parameters = new ArrayCollection($array);
-        
+
         return $this;
     }
-    
+
     public function getParameters()
     {
         if (!$this->parameters) {
             $this->setParameters(require dirname(dirname(dirname((dirname((dirname(__FILE__)))))))
                 . '/config/parameters.default.php');
         }
-        
+
         return $this->parameters;
     }
 
     /**
     * Factory e Configuracao padrao de um SphinxClient
-    * 
+    *
     * @return SphinxClient
     */
     public function createService()
@@ -57,7 +57,7 @@ class SphinxService
         $sphinxClient = new SphinxClient;
         $sphinxClient->SetServer($host, $port);
         $sphinxClient->SetConnectTimeout($timeout);
-        $sphinxClient->SetArrayResult(true);      
+        $sphinxClient->SetArrayResult(true);
         $sphinxClient->setMatchModeByModeName('any');
         $sphinxClient->SetSortMode(SPH_SORT_RELEVANCE);
         $sphinxClient->SetRankingMode(SPH_RANK_PROXIMITY);
