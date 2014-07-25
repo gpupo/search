@@ -39,7 +39,6 @@ abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
         }
 
         return $this->stringContainsOneOfArray($string, $keywords);
-
     }
 
    /**
@@ -63,19 +62,34 @@ abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
     }
 
    /**
-    * Asserts that a string contains one of keywords
+    * Asserts that a array contains one of keywords
     *
     * Example:
     * <code>
-    *   $this->assertStringContainsOneOrMore(array('shampoo','condicionador'), json_encode($item));
+    *   $this->assertArrayContainsOneOrMore(array('shampoo','condicionador'), $item);
     * </code>
     * @param  array $keywords
-    * @param  string $string
+    * @param  array $array
     * @param  string $message
     */
-    public function assertStringContainsOneOrMore(array $keywords, $string, $message = '')
+    public function assertArrayContainsOneOrMore($keywords, array $array, $message = '')
     {
-        return $this->assertStringContains(current($keywords), $string, $message, $keywords);
+        $string = $this->md_implode($array);
+
+        return $this->stringContainOneOrAlternatives($string, null, $message, $keywords);
     }
 
+    protected function md_implode($array, $glue = ' ')
+    {
+        if (is_array ($array)) {
+            $output = '';
+            foreach ($array as $v) {
+                $output .= $this->md_implode($v, $glue);
+            }
+
+            return $output;
+        } else {
+            return $array.$glue;
+        }
+    }
 }
