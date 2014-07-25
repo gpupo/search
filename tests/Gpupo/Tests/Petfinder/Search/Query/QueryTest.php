@@ -1,8 +1,8 @@
 <?php
 
-namespace Gpupo\Tests\Sfs\Search\Query;
+namespace Gpupo\Tests\Petfinder\Search\Query;
 
-use Gpupo\Tests\Sfs\TestCaseAbstract;
+use Gpupo\Tests\Petfinder\TestCaseAbstract;
 use Gpupo\Petfinder\Search\Search;
 use Gpupo\Petfinder\Search\Query\Query;
 use Gpupo\Petfinder\Search\Query\Keywords;

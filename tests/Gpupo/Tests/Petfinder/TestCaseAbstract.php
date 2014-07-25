@@ -1,6 +1,6 @@
 <?php
 
-namespace Gpupo\Tests\Sfs;
+namespace Gpupo\Tests\Petfinder;
 
 abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
 {

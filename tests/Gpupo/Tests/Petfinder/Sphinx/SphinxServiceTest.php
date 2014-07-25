@@ -1,8 +1,8 @@
 <?php
 
-namespace Gpupo\Tests\Sfs\Sphinx;
+namespace Gpupo\Tests\Petfinder\Sphinx;
 
-use Gpupo\Tests\Sfs\TestCaseAbstract;
+use Gpupo\Tests\Petfinder\TestCaseAbstract;
 use Gpupo\Petfinder\Sphinx\SphinxService;
 use Gpupo\Petfinder\Sphinx\SphinxClient;
 

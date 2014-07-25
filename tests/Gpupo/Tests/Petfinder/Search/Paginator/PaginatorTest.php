@@ -1,8 +1,8 @@
 <?php
 
-namespace Gpupo\Tests\Sfs\Search\Paginator;
+namespace Gpupo\Tests\Petfinder\Search\Paginator;
 
-use Gpupo\Tests\Sfs\TestCaseAbstract;
+use Gpupo\Tests\Petfinder\TestCaseAbstract;
 
 use Gpupo\Petfinder\Search\Search;
 use Gpupo\Petfinder\Search\Paginator\Paginator;
