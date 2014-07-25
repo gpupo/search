@@ -97,13 +97,10 @@ class SearchTest extends TestCaseAbstract
 
          foreach ($results as $item) {
             $this->assertArrayHasKey('attrs', $item);
-            $this->assertStringContainsOneOrMore(
-                array(
-                    'shampoo','condicionador', 'cabelo', 'tratamento'
-                ),
-                @json_encode($item)
+            $this->assertArrayContainsOneOrMore(
+                array('shampoo','condicionador', 'cabelo', 'tratamento'),
+                $item
             );
-
          }
 
          return $results;
@@ -128,7 +125,7 @@ class SearchTest extends TestCaseAbstract
 
          foreach ($results as $item) {
              $this->assertArrayHasKey('attrs', $item);
-             $this->assertStringContains('shampoo', @json_encode($item));
+             $this->assertArrayContainsOneOrMore('shampoo', $item);
          }
 
          return $results;

@@ -11,7 +11,7 @@ Navegação facetada é o processo de procurar o conteúdo filtrando em refinado
 Ela permite especificar refinadores diferentes para as páginas de categoria, mesmo quando a página subjacente que exibe as categorias é a mesma.
 
 
-![Image](//raw.githubusercontent.com/gpupo/petfinder/master/Resources/doc/search_query.png)
+![](http://raw.githubusercontent.com/gpupo/petfinder/master/Resources/doc/search_query.png)
 
 ### What faceting means in Sphinx
 
