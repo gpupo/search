@@ -20,8 +20,16 @@ class SphinxService
 
     protected $parameters;
 
-    public function setParameters(Array $array)
+    public function setParameters(Array $customParameters = array())
     {
+        $defaultParameters = array(
+            'host'    => 'localhost',
+            'port'    => '9313',
+            'timeout' => 5,
+        );
+
+        $array = array_merge($defaultParameters, $customParameters);
+
         $this->parameters = new ArrayCollection($array);
 
         return $this;
@@ -30,8 +38,7 @@ class SphinxService
     public function getParameters()
     {
         if (!$this->parameters) {
-            $this->setParameters(require dirname(dirname(dirname((dirname((dirname(__FILE__)))))))
-                . '/config/parameters.default.php');
+            $this->setParameters();
         }
 
         return $this->parameters;

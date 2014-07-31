@@ -43,8 +43,6 @@ $query->setIndex('fantasyIndex');
 //Configure Sphinx Server Parameters:
 SphinxService::getInstance()->setParameters(array(
 	'host'    => 'foo.bar.com', //default value is localhost
-	'port'    => '9313', //default value
-    'timeout' => 5, //default value
 ));
 
 $results = Search::getInstance()->findByQuery($query);
@@ -67,20 +65,32 @@ The recommended way to install is [through composer](http://getcomposer.org).
 
 # Dev
 
+Install [through composer](http://getcomposer.org):
 
 	composer install --dev;
-	cp phpunit.xml.dist phpunit.xml;
 
+Copy ``phpunit`` configuration file:
+
+    cp phpunit.xml.dist phpunit.xml;
 
 Customize Sphinx Search Server parameters in ``phpunit.xml``:
 
-    <php>
-        <const name="SPHINX_HOST" value="localhost"/>
-        <const name="SPHINX_PORT" value="9313"/>
-        <const name="SPHINX_TIMEOUT" value="5"/>
-    </php>
+```XML
+<php>
+	<const name="SPHINX_HOST" value="localhost"/>
+ 	<const name="SPHINX_PORT" value="9313"/>
+ 	<const name="SPHINX_TIMEOUT" value="5"/>
+</php>
+```
 
+To run localy the test suite:
 
+    $ phpunit
+    
+or see the testdox output
+
+    $ phpunit --testdox    
+    
 
 ## Tests results
 
@@ -166,13 +176,14 @@ Gpupo\Tests\Petfinder\Sphinx\SphinxService
 
 ## Todo
 
-* Translate items written originally in Brazilian portuguese;
+- [ ] Translate items written originally in Brazilian portuguese;
+- [ ] Finds a Sphinx Search public server for use in ``Travis`` tests (see the [stackoverflow question](http://stackoverflow.com/questions/24958234/there-are-sphinx-search-public-servers))
 
 ###  Update sphinxapi PHP
 
 See public read-only repository mirror for [Sphinxsearch Repository](https://code.google.com/p/sphinxsearch/)
 
-Current stable and tested Release: **21** (2.1)
+Current stable and tested Release: **2.1**
 
 Update command:
 
@@ -184,6 +195,20 @@ lynx --dump --source https://sphinxsearch.googlecode.com/svn/branches/rel${RELEA
  	
 ```
  	
+## Contributors
+
+* [@gpupo](https://github.com/gpupo)
+
+## License
+
+MIT, see LICENSE.
+
+## Links
+
+* [Petfinder Composer Package](https://packagist.org/packages/gpupo/petfinder) on packagist.org
+
+
+
 ## Search Patterns - A Mapmaker’s Manifesto
 
 by Peter Moreville and Jeffrey Callender
