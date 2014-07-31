@@ -1,6 +1,6 @@
 # Petfinder
 
-PHP Sphinx faceted search with oriented object results based
+PHP Sphinx faceted search over Official Sphinx searchd client (PHP API) with Oriented Object results based
 
 ### Faceted Navigation
 
@@ -170,10 +170,20 @@ Gpupo\Tests\Petfinder\Sphinx\SphinxService
 
 ###  Update sphinxapi PHP
 
- 	lynx --dump --source https://sphinxsearch.googlecode.com/svn/trunk/api/sphinxapi.php > \
- 	src/Gpupo/Petfinder/Sphinx/sphinxapi.php
- 	
+See public read-only repository mirror for [Sphinxsearch Repository](https://code.google.com/p/sphinxsearch/)
 
+Current stable and tested Release: **21** (2.1)
+
+Update command:
+
+```bash
+	
+RELEASE='21';
+
+lynx --dump --source https://sphinxsearch.googlecode.com/svn/branches/rel${RELEASE}/api/sphinxapi.php > src/Gpupo/Petfinder/Sphinx/sphinxapi.php
+ 	
+```
+ 	
 ## Search Patterns - A Mapmaker’s Manifesto
 
 by Peter Moreville and Jeffrey Callender

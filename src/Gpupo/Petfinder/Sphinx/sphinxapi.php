@@ -5,8 +5,8 @@
 //
 
 //
-// Copyright (c) 2001-2013, Andrew Aksyonoff
-// Copyright (c) 2008-2013, Sphinx Technologies Inc
+// Copyright (c) 2001-2014, Andrew Aksyonoff
+// Copyright (c) 2008-2014, Sphinx Technologies Inc
 // All rights reserved
 //
 // This program is free software; you can redistribute it and/or modify
@@ -382,7 +382,7 @@ function sphFixUint ( $value )
 	}
 }
 
-function SetBit ( $flag, $bit, $on )
+function sphSetBit ( $flag, $bit, $on )
 {
 	if ( $on )
 	{
@@ -964,15 +964,15 @@ class SphinxClient
 		assert ( isset ( $flag_name, $known_names ) );
 		assert ( in_array( $flag_value, $flags[$flag_name], true ) || ( $flag_name=="max_predicted_time" && is_int ( $flag_value ) && $flag_value>=0 ) );
 		
-		if ( $flag_name=="reverse_scan" )	$this->_query_flags = SetBit ( $this->_query_flags, 0, $flag_value==1 );
-		if ( $flag_name=="sort_method" )	$this->_query_flags = SetBit ( $this->_query_flags, 1, $flag_value=="kbuffer" );
+		if ( $flag_name=="reverse_scan" )	$this->_query_flags = sphSetBit ( $this->_query_flags, 0, $flag_value==1 );
+		if ( $flag_name=="sort_method" )	$this->_query_flags = sphSetBit ( $this->_query_flags, 1, $flag_value=="kbuffer" );
 		if ( $flag_name=="max_predicted_time" )
 		{
-			$this->_query_flags = SetBit ( $this->_query_flags, 2, $flag_value>0 );
+			$this->_query_flags = sphSetBit ( $this->_query_flags, 2, $flag_value>0 );
 			$this->_predictedtime = (int)$flag_value;
 		}
-		if ( $flag_name=="boolean_simplify" )	$this->_query_flags = SetBit ( $this->_query_flags, 3, $flag_value );
-		if ( $flag_name=="idf" )	$this->_query_flags = SetBit ( $this->_query_flags, 4, $flag_value=="plain" );
+		if ( $flag_name=="boolean_simplify" )	$this->_query_flags = sphSetBit ( $this->_query_flags, 3, $flag_value );
+		if ( $flag_name=="idf" )	$this->_query_flags = sphSetBit ( $this->_query_flags, 4, $flag_value=="plain" );
 	}
 	
 	/// set outer order by parameters
@@ -1606,8 +1606,8 @@ class SphinxClient
 
 	function EscapeString ( $string )
 	{
-		$from = array ( '\\', '(',')','|','-','!','@','~','"','&', '/', '^', '$', '=' );
-		$to   = array ( '\\\\', '\(','\)','\|','\-','\!','\@','\~','\"', '\&', '\/', '\^', '\$', '\=' );
+		$from = array ( '\\', '(',')','|','-','!','@','~','"','&', '/', '^', '$', '=', '<' );
+		$to   = array ( '\\\\', '\(','\)','\|','\-','\!','\@','\~','\"', '\&', '\/', '\^', '\$', '\=', '\<' );
 
 		return str_replace ( $from, $to, $string );
 	}
