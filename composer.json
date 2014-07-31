@@ -1,7 +1,7 @@
 {
     "name": "gpupo/petfinder",
-    "description": "Sphinx Faceted Search",
-    "keywords": ["sphinx", "faceted", "search"],
+    "description": "PHP Sphinx faceted search over Official Sphinx searchd client (PHP API) with Oriented Object results based",
+    "keywords": ["sphinx", "faceted", "search", "API", "client", "facet"],
     "license": "MIT",
     "require": {
         "php": ">=5.3.2",
