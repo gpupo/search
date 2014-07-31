@@ -26,10 +26,10 @@ In case the facet counts is not desired, there is another optimization that can 
 
 ### Simple Query Usage
 
-```php
+
+```PHP
 
 <?php
-
 use Gpupo\Petfinder\Search\Search;
 use Gpupo\Petfinder\Query\Keywords;
 use Gpupo\Petfinder\Query\Query;
@@ -40,7 +40,16 @@ $keywords->addKeyword('unicorn');
 $query = new Query($keywords);
 $query->setIndex('fantasyIndex');
 
-$totalItens =  Search::getInstance()->findByQuery($query)->getTotal();
+//Configure Sphinx Server Parameters:
+SphinxService::getInstance()->setParameters(array(
+	'host'    => 'foo.bar.com', //default value is localhost
+	'port'    => '9313', //default value
+    'timeout' => 5, //default value
+));
+
+$results = Search::getInstance()->findByQuery($query);
+
+$results->getTotal(); // Itens found
 
 ```
 
@@ -56,6 +65,105 @@ The recommended way to install is [through composer](http://getcomposer.org).
 }
 ```
 
+# Dev
+
+
+	composer install --dev;
+	cp phpunit.xml.dist phpunit.xml;
+
+
+Customize Sphinx Search Server parameters in ``phpunit.xml``:
+
+    <php>
+        <const name="SPHINX_HOST" value="localhost"/>
+        <const name="SPHINX_PORT" value="9313"/>
+        <const name="SPHINX_TIMEOUT" value="5"/>
+    </php>
+
+
+
+## Tests results
+
+<!-- output of this command:
+         phpunit --testdox | sed "s/.*\[/-&/" | sed 's/.*Gpupo.*/&\'$'\n/g'
+-->
+
+Gpupo\Tests\Petfinder\Search\FacetedSearch
+
+- [x] Multi queries
+- [x] Group by	
+- [x] Simplifica multiplas queries groupby
+- [x] Multiquery com groupby
+
+Gpupo\Tests\Petfinder\Search\Paginator\Paginator
+
+- [x] Resultados possui objeto modelado para paginacao
+- [x] Processa result collection
+- [x] Marca a pagina atual
+- [x] Manipula offset de query
+- [x] Manipula limit de query
+- [x] Divide resultados em paginas de acordo com limite
+- [x] Acesso ao range de paginas aproximadas
+- [x] Permite customizacao do range de paginas para navegacao
+- [x] Acesso a valores da paginacao
+
+Gpupo\Tests\Petfinder\Search\Query\Filters
+
+- [x] Filtra por lista de valores de uma chave
+- [x] Filtra por range de valores de uma chave
+- [x] Adiciona um valor a values filters existente
+
+Gpupo\Tests\Petfinder\Search\Query\Keywords
+
+- [x] Processa palavras chave a partir de string
+- [x] Sucesso com palavras chaves validas
+- [x] Valida string de palavras chave vazias ou menor que o permitido
+- [x] Sucesso ao pesquisar com frases
+
+Gpupo\Tests\Petfinder\Search\Query\Query
+
+- [x] Palavras chaves modeladas em objeto
+- [x] Pesquisa a partir de queries modeladas
+- [x] Queries possuem atributos modelados e controlados
+- [x] Recebe entrada de limites de resultados
+- [x] Recebe entrada de offset para resultados
+- [x] Valida entrada de offset para resultados
+- [x] Valida entrada de limites de resultados
+- [x] Permite pesquisa em multiplos indices
+- [x] Valida entrada para multiplos indices
+- [x] Possui filtros modelados
+- [x] Recebe entrada de filtros
+- [x] Valida entrada de filtros
+- [x] Suporte a busca facetada por um atributo
+- [x] Suporte a busca facetada por muitos atributos
+- [x] Evita contagem por atributos duplicada
+
+Gpupo\Tests\Petfinder\Search\Result\Collection
+
+- [x] Resultados com propriedades processadas
+
+Gpupo\Tests\Petfinder\Search\Search
+
+- [x] Resultados contendo objetos modelados
+- [x] Pesquisa palavra chave simples
+- [x] Possui quantidade limite de resultados
+- [x] Resultados possuem atributos
+- [x] Pesquisa por multiplas palavras
+- [x] Pesquisa por parte de palavra
+- [x] Pesquisa com palavras fora de ordem
+- [x] Acesso a quantidade de resultados disponiveis
+- [x] Acesso a quantidade de resultados disponiveis por palavra
+- [x] Acesso a resultados em objetos modelados
+- [x] Suporte a multi queries
+
+Gpupo\Tests\Petfinder\Sphinx\SphinxService
+
+- [x] Permite acesso aos parametros default
+- [x] Permite definicao de parametros personalizados
+- [x] Disponibiliza acesso ao client
+- [x] Acesso singleton ao client com reset
+
+
 ## Todo
 
 * Translate items written originally in Brazilian portuguese;
@@ -64,6 +172,7 @@ The recommended way to install is [through composer](http://getcomposer.org).
 
  	lynx --dump --source https://sphinxsearch.googlecode.com/svn/trunk/api/sphinxapi.php > \
  	src/Gpupo/Petfinder/Sphinx/sphinxapi.php
+ 	
 
 ## Search Patterns - A Mapmaker’s Manifesto
 
