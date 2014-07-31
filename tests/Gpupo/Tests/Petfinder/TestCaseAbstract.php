@@ -2,8 +2,28 @@
 
 namespace Gpupo\Tests\Petfinder;
 
+use Gpupo\Petfinder\Sphinx\SphinxService;
+
 abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
 {
+
+    protected function getSphinxServerParameters()
+    {
+        return array(
+            'host'      => SPHINX_HOST,
+            'port'      => SPHINX_PORT,
+            'timeout'   => SPHINX_TIMEOUT,
+        );
+    }
+
+    /**
+     * Configure Sphinx Server Parameters
+     */
+    public function setUp()
+    {
+        SphinxService::getInstance()
+            ->setParameters($this->getSphinxServerParameters());
+    }
     /**
      * Verifica se uma string possui a ocorroncia de um dos valores do array informado
      *
