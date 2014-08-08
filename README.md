@@ -58,7 +58,7 @@ The recommended way to install is [through composer](http://getcomposer.org).
 ```JSON
 {
     "require": {
-        "gpupo/petfinder": "1.*"
+        "gpupo/petfinder": "dev-master"
     }
 }
 ```

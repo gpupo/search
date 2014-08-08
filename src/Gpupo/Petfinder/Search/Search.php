@@ -44,7 +44,7 @@ class Search  extends SearchAbstract implements SearchInterface
         $paginator = new Paginator;
 
         if ($query->getPaginator()) {
-            $page = $query->getPaginator()->getPage();
+            $page = $query->getPaginator()->getCurrentPageNumber();
         } else {
             $page = 1;
         }
@@ -105,7 +105,12 @@ class Search  extends SearchAbstract implements SearchInterface
      */
     public function getSphinxClient()
     {
-        return SphinxService::getInstance()->getFreshClient();
+        return $this->getSphinxService()->getFreshClient();
+    }
+
+    public function getSphinxService()
+    {
+        return SphinxService::getInstance();
     }
 
  }
