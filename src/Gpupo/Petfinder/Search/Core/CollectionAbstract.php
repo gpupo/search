@@ -47,4 +47,47 @@ abstract class CollectionAbstract extends ArrayCollection
             throw new \LogicException("Elemento $key deve ser um array");
         }
     }
+
+    /**
+     * Magic method that implements
+     *
+     * @param string $method
+     * @param array $args
+     *
+     * @throws \BadMethodCallException
+     * @return mixed
+     */
+    public function __call($method, $args)
+    {
+        $command = substr($method, 0, 3);
+        $field = $this->__calculateFieldName($method);
+
+        if ($command == "set") {
+            $this->set($field, $args);
+        } else if ($command == "get") {
+            return $this->get($field);
+        } else if ($command == "add") {
+            $this->add($field, $args);
+        } else {
+            throw new \BadMethodCallException("There is no method ".$method);
+        }
+    }
+
+    /**
+     * Encontra o nome de uma coluna snake_case para um getter
+     *
+     * @param string $method
+     * @return string
+     */
+    protected function __calculateFieldName($method)
+    {
+        $string = substr($method, 3);
+        $from_camel_case = function ($str) {
+            $str[0] = strtolower($str[0]);
+            $func = create_function('$c', 'return "_" . strtolower($c[1]);');
+            return preg_replace_callback('/([A-Z])/', $func, $str);
+        };
+
+        return $from_camel_case($string);
+    }
 }

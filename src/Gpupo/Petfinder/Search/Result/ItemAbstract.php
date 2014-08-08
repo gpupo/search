@@ -19,12 +19,12 @@ abstract class ItemAbstract extends \Gpupo\Petfinder\Search\Core\CollectionAbstr
      *
      * @param string $chave
      */
-    protected function getAtributo($chave)
+    protected function getAtributo($key)
     {
-        $atributos = $this->getAtributos();
+        $attrs = $this->get('attrs');
 
-        if (array_key_exists($chave, $atributos)) {
-            return trim($atributos[$chave]);
+        if (isset($attrs[$key])) {
+            return $attrs[$key];
         }
 
         return null;
@@ -38,5 +38,33 @@ abstract class ItemAbstract extends \Gpupo\Petfinder\Search\Core\CollectionAbstr
         $string .= "\n";
 
         return $string;
+    }
+
+
+    /**
+     * Magic method that implements
+     *
+     * @param string $method
+     * @param array $args
+     *
+     * @throws \BadMethodCallException
+     * @return mixed
+     */
+    public function __call($method, $args)
+    {
+        if (substr($method, 0, 3) == "get") {
+            return  $this->get($this->__calculateFieldName($method));
+        }
+
+        return $this->find($method);
+    }
+
+    public function find($key)
+    {
+        if ($attr = $this->getAtributo($key)) {
+            return $attr;
+        }
+
+        return $this->get($key);
     }
 }
