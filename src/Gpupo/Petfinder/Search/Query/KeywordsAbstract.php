@@ -27,6 +27,23 @@ abstract class KeywordsAbstract
         return $this;
     }
 
+    public function setKey($key)
+    {
+        $this->data['key'] = $key;
+    }
+
+    public function setData($key, array $values, $strict = false)
+    {
+        $array = array(
+            'key'       => $key,
+            'values'    => $values,
+            'strict'    => $strict,
+        );
+
+        return $this->data = $array;
+    }
+
+
     public function getData()
     {
         return $this->data;

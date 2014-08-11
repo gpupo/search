@@ -55,6 +55,10 @@ $results->getTotal(); // Itens found
 
 The recommended way to install is [through composer](http://getcomposer.org).
 
+    composer require gpupo/petfinder:dev-master
+
+or
+
 ```JSON
 {
     "require": {

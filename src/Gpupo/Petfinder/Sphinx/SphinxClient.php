@@ -50,6 +50,8 @@ class SphinxClient extends \SphinxClient
             'any'       => 1,
             'phrase'    => 2,
             'boolean'   => 3,
+            'extended'  => 4,
+            'fullscan'  => 5,
         );
 
         if (array_key_exists($modeName, $modes)) {

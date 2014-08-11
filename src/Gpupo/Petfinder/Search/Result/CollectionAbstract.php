@@ -137,4 +137,14 @@ abstract class CollectionAbstract  extends CoreCollectionAbstract
     {
         return $this->get('itens');
     }
+
+    /**
+     * First item found
+     *
+     * @return Item
+     */
+    public function getFirst()
+    {
+        return current($this->toArray());
+    }
 }
