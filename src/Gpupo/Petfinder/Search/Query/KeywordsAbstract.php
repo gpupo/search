@@ -32,6 +32,11 @@ abstract class KeywordsAbstract
         $this->data['key'] = $key;
     }
 
+    public function setStrict($bool)
+    {
+        $this->data['strict'] = $bool;
+    }
+
     public function setData($key, array $values, $strict = false)
     {
         $array = array(
@@ -76,8 +81,8 @@ abstract class KeywordsAbstract
             throw new \InvalidArgumentException('Palavra chave nao pode ser vazia');
         }
 
-        if (strlen(preg_replace("/[^A-Za-z0-9?!]/",'',$string)) < 3) {
-            throw new \InvalidArgumentException('Palavra chave deve ter mais que 2 caracteres');
+        if (strlen(preg_replace("/[^A-Za-z0-9?!]/",'',$string)) < 1) {
+            throw new \InvalidArgumentException('Palavra chave deve ter mais que 1 caracteres');
         }
 
         $array = explode(' ', $string);
