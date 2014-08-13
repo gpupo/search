@@ -51,6 +51,11 @@ $results->getTotal(); // Itens found
 
 ```
 
+New! Check [index.php](https://github.com/gpupo/peccary/blob/master/web/index.php)
+in [peccary project](https://github.com/gpupo/peccary/)
+(Catalog Sandbox with Petfinder component, Sphinx Search and Silex Framework) for more examples.
+
+
 ## Install
 
 The recommended way to install is [through composer](http://getcomposer.org).
