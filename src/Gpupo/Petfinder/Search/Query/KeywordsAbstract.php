@@ -48,6 +48,7 @@ abstract class KeywordsAbstract
         return $this->data = $array;
     }
 
+
     public function getData()
     {
         return $this->data;
