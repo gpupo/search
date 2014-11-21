@@ -18,6 +18,8 @@ use Gpupo\Petfinder\Search\Core\CollectionAbstract as CoreCollectionAbstract;
  */
 abstract class CollectionAbstract  extends CoreCollectionAbstract
 {
+    public $attributes;
+    
     /**
      * Lista de documentos encontrados
      */
