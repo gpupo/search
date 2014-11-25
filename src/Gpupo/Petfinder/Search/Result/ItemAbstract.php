@@ -40,12 +40,11 @@ abstract class ItemAbstract extends \Gpupo\Petfinder\Search\Core\CollectionAbstr
         return $string;
     }
 
-
     /**
      * Magic method that implements
      *
      * @param string $method
-     * @param array $args
+     * @param array  $args
      *
      * @throws \BadMethodCallException
      * @return mixed

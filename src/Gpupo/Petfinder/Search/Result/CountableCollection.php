@@ -21,7 +21,7 @@ class CountableCollection extends CollectionAbstract
      * @var string
      */
     protected $attributeName;
-    
+
     public function setAttributeName($name)
     {
         $this->attributeName = $name;
@@ -41,4 +41,23 @@ class CountableCollection extends CollectionAbstract
     {
         return $this->attributeName;
     }
-} 
+
+    public function toArray()
+    {
+        $array = [];
+
+        foreach (parent::toArray() as $item) {
+            $name = $item->find($this->getAttributeName());
+
+            if (!empty($name)) {
+                $array[] = [
+                    'field' => $this->getAttributeName(),
+                    'name'  => $name,
+                    'value' => $item->find('@count'),
+                ];
+            }
+        }
+
+        return $array;
+    }
+}
