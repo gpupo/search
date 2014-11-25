@@ -62,11 +62,6 @@ class SphinxClient extends \SphinxClient
         }
     }
 
-    public function setMaxMatches($int)
-    {
-        $this->_maxmatches = intval($int);
-    }
-
     /**
      * Define a ordem de resultados
      *

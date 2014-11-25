@@ -52,7 +52,7 @@ abstract class CollectionAbstract extends ArrayCollection
      * Magic method that implements
      *
      * @param string $method
-     * @param array $args
+     * @param array  $args
      *
      * @throws \BadMethodCallException
      * @return mixed
@@ -64,9 +64,9 @@ abstract class CollectionAbstract extends ArrayCollection
 
         if ($command == "set") {
             $this->set($field, $args);
-        } else if ($command == "get") {
+        } elseif ($command == "get") {
             return $this->get($field);
-        } else if ($command == "add") {
+        } elseif ($command == "add") {
             $this->add($field, $args);
         } else {
             throw new \BadMethodCallException("There is no method ".$method);
@@ -76,7 +76,7 @@ abstract class CollectionAbstract extends ArrayCollection
     /**
      * Encontra o nome de uma coluna snake_case para um getter
      *
-     * @param string $method
+     * @param  string $method
      * @return string
      */
     protected function __calculateFieldName($method)
@@ -85,6 +85,7 @@ abstract class CollectionAbstract extends ArrayCollection
         $from_camel_case = function ($str) {
             $str[0] = strtolower($str[0]);
             $func = create_function('$c', 'return "_" . strtolower($c[1]);');
+
             return preg_replace_callback('/([A-Z])/', $func, $str);
         };
 

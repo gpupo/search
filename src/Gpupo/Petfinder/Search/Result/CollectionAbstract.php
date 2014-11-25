@@ -18,8 +18,6 @@ use Gpupo\Petfinder\Search\Core\CollectionAbstract as CoreCollectionAbstract;
  */
 abstract class CollectionAbstract  extends CoreCollectionAbstract
 {
-    public $attributes;
-    
     /**
      * Lista de documentos encontrados
      */
@@ -113,14 +111,23 @@ abstract class CollectionAbstract  extends CoreCollectionAbstract
             $list = array();
 
             if (array_key_exists('matches', $array)) {
-                foreach ($array['matches'] as $result) {
-                    $list[] = $this->factoryItem($result);
-                }
+                $matches = $array['matches'];
+                unset ($array['matches']);
+            } elseif (array_key_exists('matches', $array[0])) {
+                $matches = $array[0]['matches'];
+                unset ($array[0]['matches']);
+                $array = $array[0];
+            } else {
+                return parent::__construct($array);
+            }
+
+            foreach ($matches as $result) {
+                $list[] = $this->factoryItem($result);
             }
 
             $array['itens'] = $list;
 
-            parent::__construct($array);
+            return parent::__construct($array);
         }
     }
 

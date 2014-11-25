@@ -10,6 +10,8 @@
 
 namespace Gpupo\Petfinder\Search;
 
+use Gpupo\Petfinder\Search\Result\CountableCollection;
+
 /**
  * Comunicacao com o SphinxClient
  */
@@ -46,7 +48,7 @@ abstract class SearchAbstract
      * @param  integer $offset
      * @return array   Results
      */
-    public function query ($index, array $filters = null,
+    public function query($index, array $filters = null,
         array $queries = null, array $fieldWeights = null,
         $limit = 20, $offset = 0
     ) {
@@ -194,13 +196,26 @@ abstract class SearchAbstract
      */
     public function getCollection($index, array $filters = null,
         array $queries = null, array $fieldWeights = null,
-        $limit = 20, $offset = 0
+        $limit = 20, $offset = 0, $countableAttributes = null
     ) {
 
         $result = $this->query($index, $filters, $queries,
             $fieldWeights, $limit, $offset);
 
         if (is_array($result)) {
+
+            if ($countableAttributes) {
+                $i = 0;
+                foreach ($countableAttributes as $attributeName) {
+                    $i++;
+                    $result[0]['attributes']['countable'][$attributeName] = new CountableCollection($result[$i], $attributeName);
+                }
+            }
+
+            for ($l = 1; $l <= $i; $l++) {
+                unset($result[$l]);
+            }
+
             $collection = $this->factoryCollection($result);
 
             return $collection;

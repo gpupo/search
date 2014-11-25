@@ -38,7 +38,8 @@ class Search  extends SearchAbstract implements SearchInterface
             $query->getQueries(),
             $query->getFieldWeights(),
             $query->getLimit(),
-            $query->getOffSet()
+            $query->getOffSet(),
+            $query->getCountableAttributes()
         );
 
         $paginator = new Paginator;
