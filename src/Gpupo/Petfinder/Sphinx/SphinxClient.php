@@ -10,6 +10,10 @@
 
 namespace Gpupo\Petfinder\Sphinx;
 
+assert_options(ASSERT_ACTIVE, 1);
+assert_options(ASSERT_WARNING, 0);
+assert_options(ASSERT_QUIET_EVAL, 1);
+
 include(dirname(__FILE__) . '/sphinxapi.php');
 
 /**
