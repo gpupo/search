@@ -1,3 +1,7 @@
+[![Author](http://img.shields.io/badge/author-@gpupo-blue.svg)](https://twitter.com/gpupo)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/gpupo/petfinder/blob/master/LICENSE)
+[![Build Status](https://secure.travis-ci.org/gpupo/petfinder.png?branch=master)](http://travis-ci.org/gpupo/petfinder
+
 # Petfinder
 
 PHP Sphinx faceted search over Official Sphinx searchd client (PHP API) with Oriented Object results based
@@ -38,17 +42,7 @@ in [peccary project](https://github.com/gpupo/peccary/)
 
 The recommended way to install is [through composer](http://getcomposer.org).
 
-    composer require gpupo/petfinder:dev-master
-
-or
-
-```JSON
-{
-    "require": {
-        "gpupo/petfinder": "dev-master"
-    }
-}
-```
+    composer require gpupo/petfinder
 
 ---
 
@@ -56,7 +50,7 @@ or
 
 Install [through composer](http://getcomposer.org):
 
-	composer install --dev;
+	composer install;
 
 Copy ``phpunit`` configuration file:
 
@@ -75,11 +69,11 @@ Customize Sphinx Search Server parameters in ``phpunit.xml``:
 To run localy the test suite:
 
     $ phpunit
-    
+
 or see the testdox output
 
-    $ phpunit --testdox    
-    
+    $ phpunit --testdox
+
 
 ## Tests results
 
@@ -90,7 +84,7 @@ or see the testdox output
 Gpupo\Tests\Petfinder\Search\FacetedSearch
 
 - [x] Multi queries
-- [x] Group by	
+- [x] Group by
 - [x] Simplifica multiplas queries groupby
 - [x] Multiquery com groupby
 
@@ -177,11 +171,11 @@ Current stable and tested Release: **2.1**
 Update command:
 
 ```bash
-	
+
 RELEASE='21';
 
 lynx --dump --source https://sphinxsearch.googlecode.com/svn/branches/rel${RELEASE}/api/sphinxapi.php > src/Gpupo/Petfinder/Sphinx/sphinxapi.php
- 	
+
 ```
 
 ----
