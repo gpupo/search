@@ -50,13 +50,12 @@ class KeywordsTest extends TestCaseAbstract
 
     /**
      * @dataProvider      dataProviderPalavrasInvalidas
-     * @expectedException Exception
+     * @expectedException \Exception
      */
     public function testValidaStringDePalavrasChaveVaziasOuMenorQueOPermitido($string)
     {
         $keywords = new Keywords();
         $keywords->readString($string);
-        $this->assertEquals([], $keywords->getValues());
     }
 
     /**
@@ -64,6 +63,10 @@ class KeywordsTest extends TestCaseAbstract
      */
     public function testSucessoAoPesquisarComFrases($string)
     {
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $keywords = new Keywords();
         $keywords->readString($string);
         $query = new Query($keywords);

@@ -24,6 +24,10 @@ class SearchTest extends TestCaseAbstract
      */
     public function testResultadosContendoObjetosModelados($keyword)
     {
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $collection = new Collection();
         $results = Search::getInstance()->getResultsByKeyword($keyword, $collection);
         $this->assertInstanceOf('\Gpupo\Petfinder\Search\Result\CollectionInterface', $results);
@@ -35,6 +39,10 @@ class SearchTest extends TestCaseAbstract
 
     public function testPesquisaPalavraChaveSimples()
     {
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $results = Search::getInstance()->search(
             'produtoIndex',
             null,
@@ -84,6 +92,10 @@ class SearchTest extends TestCaseAbstract
 
     public function testPesquisaPorMultiplasPalavras()
     {
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $results = Search::getInstance()->search(
             'produtoIndex',
             null,
@@ -115,6 +127,10 @@ class SearchTest extends TestCaseAbstract
 
     public function testPesquisaPorParteDePalavra()
     {
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $results = Search::getInstance()->search(
             'produtoIndex',
             null,
@@ -146,6 +162,10 @@ class SearchTest extends TestCaseAbstract
         $query = new Query($keywords);
         $query->setIndex('produtoIndex');
 
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $total['mode_1'] = Search::getInstance()->findByQuery($query)->getTotal();
 
         //Mode 2
@@ -171,6 +191,10 @@ class SearchTest extends TestCaseAbstract
 
     public function testAcessoAQuantidadeDeResultadosDisponiveis()
     {
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $results = Search::getInstance()->query(
             'produtoIndex',
             null,
@@ -210,6 +234,10 @@ class SearchTest extends TestCaseAbstract
      */
     public function testAcessoAResultadosEmObjetosModelados()
     {
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $collection = Search::getInstance()->getCollection(
             'produtoIndex',
             null,
@@ -263,6 +291,10 @@ class SearchTest extends TestCaseAbstract
             ],
             'strict' => false,
         ];
+
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
 
         $multipleResults = Search::getInstance()->query(
             'produtoIndex', null, $query, null, 2, 0

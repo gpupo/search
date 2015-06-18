@@ -81,8 +81,8 @@ abstract class KeywordsAbstract
             throw new \InvalidArgumentException('Palavra chave nao pode ser vazia');
         }
 
-        if (strlen(preg_replace('/[^A-Za-z0-9?!]/', '', $string)) < 1) {
-            throw new \InvalidArgumentException('Palavra chave deve ter mais que 1 caracteres');
+        if (strlen(preg_replace('/[^A-Za-z0-9?!]/', '', $string)) < 3) {
+            throw new \InvalidArgumentException('Palavra chave deve ter mais que 3 caracteres');
         }
 
         $array = explode(' ', $string);

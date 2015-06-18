@@ -38,6 +38,11 @@ class FacetedSearchTest extends TestCaseAbstract
         $cl->SetSortMode(SPH_SORT_EXTENDED, 'categoria asc');
 
         $cl->AddQuery('perfume', 'produtoIndex');
+
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $results = $cl->RunQueries();
 
         $this->assertInternalType('array', $results);
@@ -59,6 +64,10 @@ class FacetedSearchTest extends TestCaseAbstract
         $cl->SetGroupBy('categoria', SPH_GROUPBY_ATTR);
         $cl->AddQuery('shampoo', 'produtoIndex');
 
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $results = $cl->RunQueries();
 
         foreach ($results[0]['matches'] as $item) {
@@ -74,6 +83,11 @@ class FacetedSearchTest extends TestCaseAbstract
 
         $cl->SetMatchMode(SPH_MATCH_EXTENDED2);
         $cl->SetSortMode(SPH_SORT_RELEVANCE);
+
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $cl->addFacetedQuery('perfume', 'produtoIndex', ['categoria', 'fornecedor', 'tamanho']);
 
         $results = $cl->RunQueries();
@@ -98,6 +112,10 @@ class FacetedSearchTest extends TestCaseAbstract
              ],
             'countableAttributes' => $countableAttributes,
         ];
+
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
 
         $results = Search::getInstance()->query(
             'produtoIndex',

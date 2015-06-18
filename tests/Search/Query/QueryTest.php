@@ -47,6 +47,10 @@ class QueryTest extends TestCaseAbstract
      */
     public function testPesquisaAPartirDeQueriesModeladas(KeywordsInterface $keywords)
     {
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $query = new Query($keywords);
         $query->setIndex('produtoIndex');
 
@@ -170,15 +174,6 @@ class QueryTest extends TestCaseAbstract
         $this->assertArrayHasKey('key', $filter);
         $this->assertArrayHasKey('values', $filter);
         $this->assertContains(285, $filter['values']);
-    }
-
-    /**
-     * @expectedException        Exception
-     */
-    public function testValidaEntradaDeFiltros()
-    {
-        $query = new Query();
-        $query->setFilters([]);
     }
 
     public function dataProviderKeywords()
