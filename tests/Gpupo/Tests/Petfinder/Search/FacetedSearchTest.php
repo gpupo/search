@@ -1,10 +1,19 @@
 <?php
 
+/*
+ * This file is part of gpupo/petfinder
+ *
+ * (c) Gilmar Pupo <g@g1mr.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Gpupo\Tests\Petfinder\Search;
 
-use Gpupo\Tests\Petfinder\TestCaseAbstract;
-use Gpupo\Petfinder\Sphinx\SphinxService;
 use Gpupo\Petfinder\Search\Search;
+use Gpupo\Petfinder\Sphinx\SphinxService;
+use Gpupo\Tests\Petfinder\TestCaseAbstract;
 
 class FacetedSearchTest extends TestCaseAbstract
 {
@@ -23,12 +32,12 @@ class FacetedSearchTest extends TestCaseAbstract
 
         $cl->SetMatchMode(SPH_MATCH_EXTENDED2);
         $cl->SetSortMode(SPH_SORT_RELEVANCE);
-        $cl->AddQuery("perfume", "produtoIndex");
-        $cl->SetSortMode(SPH_SORT_EXTENDED, "categoria desc");
-        $cl->AddQuery("perfume", "produtoIndex");
-        $cl->SetSortMode(SPH_SORT_EXTENDED, "categoria asc");
+        $cl->AddQuery('perfume', 'produtoIndex');
+        $cl->SetSortMode(SPH_SORT_EXTENDED, 'categoria desc');
+        $cl->AddQuery('perfume', 'produtoIndex');
+        $cl->SetSortMode(SPH_SORT_EXTENDED, 'categoria asc');
 
-        $cl->AddQuery("perfume", "produtoIndex");
+        $cl->AddQuery('perfume', 'produtoIndex');
         $results = $cl->RunQueries();
 
         $this->assertInternalType('array', $results);
@@ -48,12 +57,12 @@ class FacetedSearchTest extends TestCaseAbstract
     {
         $cl = SphinxService::getInstance()->getClient();
         $cl->SetGroupBy('categoria', SPH_GROUPBY_ATTR);
-        $cl->AddQuery("shampoo", "produtoIndex");
+        $cl->AddQuery('shampoo', 'produtoIndex');
 
         $results = $cl->RunQueries();
 
         foreach ($results[0]['matches'] as $item) {
-            $this->assertGreaterThan(0,$item['attrs']['@count']);
+            $this->assertGreaterThan(0, $item['attrs']['@count']);
             $this->assertInternalType('integer', $item['attrs']['@count']);
             $this->assertInternalType('integer', $item['attrs']['categoria']);
         }
@@ -65,7 +74,7 @@ class FacetedSearchTest extends TestCaseAbstract
 
         $cl->SetMatchMode(SPH_MATCH_EXTENDED2);
         $cl->SetSortMode(SPH_SORT_RELEVANCE);
-        $cl->addFacetedQuery("perfume", "produtoIndex", array('categoria','fornecedor', 'tamanho'));
+        $cl->addFacetedQuery('perfume', 'produtoIndex', ['categoria', 'fornecedor', 'tamanho']);
 
         $results = $cl->RunQueries();
 
@@ -74,21 +83,21 @@ class FacetedSearchTest extends TestCaseAbstract
 
     /**
      * O mesmo teste que testSimplificaMultiplasQueriesGroupby() mas
-     * usando Search::query()
+     * usando Search::query().
      */
     public function testMultiqueryComGroupby()
     {
-        $countableAttributes = array('categoria','fornecedor', 'tamanho');
+        $countableAttributes = ['categoria','fornecedor', 'tamanho'];
 
-        $querys = array();
+        $querys = [];
 
-        $querys[] =   array(
-            'key'    => '*',
-             'values' => array(
+        $querys[] =   [
+            'key'     => '*',
+             'values' => [
                 'shampoo',
-             ),
+             ],
             'countableAttributes' => $countableAttributes,
-        );
+        ];
 
         $results = Search::getInstance()->query(
             'produtoIndex',
@@ -107,14 +116,14 @@ class FacetedSearchTest extends TestCaseAbstract
     }
 
     /**
-     * Reutilizacao de afirmacoes
+     * Reutilizacao de afirmacoes.
      */
     protected function assertMultiQueryResults(array $results)
     {
         foreach ($results[1]['matches'] as $item) {
             $this->assertTrue(is_array($item['attrs']));
             $this->assertArrayHasKey('@count', $item['attrs']);
-            $this->assertGreaterThan(0,$item['attrs']['@count']);
+            $this->assertGreaterThan(0, $item['attrs']['@count']);
             $this->assertInternalType('integer', $item['attrs']['@count']);
             $this->assertInternalType('integer', $item['attrs']['categoria']);
         }
@@ -122,7 +131,7 @@ class FacetedSearchTest extends TestCaseAbstract
         foreach ($results[2]['matches'] as $item) {
             $this->assertTrue(is_array($item['attrs']));
             $this->assertArrayHasKey('@count', $item['attrs']);
-            $this->assertGreaterThan(0,$item['attrs']['@count']);
+            $this->assertGreaterThan(0, $item['attrs']['@count']);
             $this->assertInternalType('integer', $item['attrs']['@count']);
             $this->assertInternalType('integer', $item['attrs']['fornecedor']);
         }
@@ -130,7 +139,7 @@ class FacetedSearchTest extends TestCaseAbstract
         foreach ($results[3]['matches'] as $item) {
             $this->assertTrue(is_array($item['attrs']));
             $this->assertArrayHasKey('@count', $item['attrs']);
-            $this->assertGreaterThan(0,$item['attrs']['@count']);
+            $this->assertGreaterThan(0, $item['attrs']['@count']);
             $this->assertInternalType('integer', $item['attrs']['@count']);
         }
 

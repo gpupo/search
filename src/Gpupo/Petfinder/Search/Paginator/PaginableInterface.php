@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -15,5 +16,4 @@ interface PaginableInterface
     public function getPaginator();
 
     public function setPaginator(PaginatorInterface $paginator);
-
 }

@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -13,46 +14,46 @@ namespace Gpupo\Petfinder\Search;
 use Gpupo\Petfinder\Search\Result\CountableCollection;
 
 /**
- * Comunicacao com o SphinxClient
+ * Comunicacao com o SphinxClient.
  */
 abstract class SearchAbstract
 {
     /**
-     * Facade para Single query, obtendo apenas os resultados (matches)
+     * Facade para Single query, obtendo apenas os resultados (matches).
      */
     public function search($index, array $filters = null,
         array $queries = null, array $fieldWeights = null,
         $limit = 20, $offset = 0
     ) {
-
         $result = $this->query($index, $filters, $queries,
             $fieldWeights, $limit, $offset);
 
         if (!isset($result['matches'])) {
-            return array();
+            return [];
         }
 
         return $result['matches'];
     }
 
     /**
-     * Executa Queries
+     * Executa Queries.
      *
      * @see \Gpupo\Petfinder\Search\Query\FiltersAbstract::toArray()          Filter Array Sintaxe
      * @see \Gpupo\Petfinder\Search\Query\QueryAbstract::getQueries()         Query Array Sintaxe
      * @see \Gpupo\Petfinder\Search\Query\QueryAbstract::getFieldWeights()    Query Array Sintaxe
-     * @param  array   $filter       Search filter
-     * @param  array   $queries      Search query
-     * @param  array   $fieldWeights Field weights array
-     * @param  integer $limit
-     * @param  integer $offset
-     * @return array   Results
+     *
+     * @param array $filter       Search filter
+     * @param array $queries      Search query
+     * @param array $fieldWeights Field weights array
+     * @param int   $limit
+     * @param int   $offset
+     *
+     * @return array Results
      */
     public function query($index, array $filters = null,
         array $queries = null, array $fieldWeights = null,
         $limit = 20, $offset = 0
     ) {
-
         $sphinxClient = $this->getSphinxClient();
         $sphinxClient->SetLimits($offset, $limit);
         if (null !== $filters) {
@@ -82,14 +83,12 @@ abstract class SearchAbstract
         }
         if (null !== $queries) {
             foreach ($queries as $key => $queryInfo) {
-
                 $query = $this->implodeQueryValues($queryInfo);
 
                 if (array_key_exists('countableAttributes', $queryInfo)) {
-
                     $array = $queryInfo['countableAttributes'];
                     if (!is_array($array)) {
-                        $array = array($array);
+                        $array = [$array];
                     }
 
                     $sphinxClient->addFacetedQuery($query, $index, $array);
@@ -109,7 +108,7 @@ abstract class SearchAbstract
     }
 
     /**
-     * RunQueries() + validate
+     * RunQueries() + validate.
      *
      * - Single Query: Resultados da Query
      *
@@ -134,13 +133,14 @@ abstract class SearchAbstract
      * );
      * </code>
      *
-     * @param  \SphinxClient $sphinxClient
-     * @return array
+     * @param \SphinxClient $sphinxClient
+     *
      * @throws \Exception
+     *
+     * @return array
      */
     protected function getResult(\SphinxClient $sphinxClient)
     {
-
         $result = $sphinxClient->RunQueries();
 
         if (false === $result) {
@@ -166,7 +166,7 @@ abstract class SearchAbstract
         }
 
         //Suporte ao formato inicial de unica query
-        if (count($result) == 1) {
+        if (count($result) === 1) {
             return current($result);
         }
 
@@ -175,35 +175,34 @@ abstract class SearchAbstract
 
     /**
      * Transforma uma query array em uma string usada na
-     * query do Client Sphinx Search
+     * query do Client Sphinx Search.
      *
-     * @param  array  $queryInfo
+     * @param array $queryInfo
+     *
      * @return string
      */
     protected function implodeQueryValues(array $queryInfo)
     {
         $query = "@{$queryInfo['key']} "
-            . (
-                '*' . implode('* *', $queryInfo['values'])
-                . '*'
-            ) . PHP_EOL;
+            .(
+                '*'.implode('* *', $queryInfo['values'])
+                .'*'
+            ).PHP_EOL;
 
         return $query;
     }
 
     /**
-     * Facade para query, obtendo resultados em objeto
+     * Facade para query, obtendo resultados em objeto.
      */
     public function getCollection($index, array $filters = null,
         array $queries = null, array $fieldWeights = null,
         $limit = 20, $offset = 0, $countableAttributes = null
     ) {
-
         $result = $this->query($index, $filters, $queries,
             $fieldWeights, $limit, $offset);
 
         if (is_array($result)) {
-
             if ($countableAttributes) {
                 $i = 0;
                 foreach ($countableAttributes as $attributeName) {

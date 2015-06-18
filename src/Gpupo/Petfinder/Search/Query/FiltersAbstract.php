@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -12,7 +13,7 @@ namespace Gpupo\Petfinder\Search\Query;
 
 abstract class FiltersAbstract
 {
-    protected $list = array();
+    protected $list = [];
 
     protected function add(array $array)
     {
@@ -29,9 +30,10 @@ abstract class FiltersAbstract
     }
 
     /**
-     * Acesso aos valores de um filtro
+     * Acesso aos valores de um filtro.
      *
-     * @param  string     $key
+     * @param string $key
+     *
      * @return array|null
      */
     public function getValues($key)
@@ -42,10 +44,11 @@ abstract class FiltersAbstract
     }
 
     /**
-     * Adiciona um valor a ValuesFilter existente
+     * Adiciona um valor a ValuesFilter existente.
      *
-     * @param  string $key
-     * @param  type   $value
+     * @param string $key
+     * @param type   $value
+     *
      * @return bool
      */
     public function appendValueFilter($key, $value)
@@ -54,7 +57,7 @@ abstract class FiltersAbstract
             if ($this->getValues($key)) {
                 return $this->append($key, $value);
             } else {
-                return $this->addValuesFilter($key, array($value));
+                return $this->addValuesFilter($key, [$value]);
             }
         } else {
             //do nothing
@@ -63,23 +66,23 @@ abstract class FiltersAbstract
     }
 
     /**
-     * Filtra por Lista de valores de uma chave
+     * Filtra por Lista de valores de uma chave.
      *
      * @param string $key    The key to filter on
      * @param array  $values The values to be filtered
      */
     public function addValuesFilter($key, array $values)
     {
-        $array = array(
+        $array = [
             'key'       => $key,
             'values'    => $values,
-        );
+        ];
 
         return $this->add($array);
     }
 
     /**
-     * Adiciona um filtro a partir de string no formato 0-10 (inicio - fim)
+     * Adiciona um filtro a partir de string no formato 0-10 (inicio - fim).
      *
      * @param string $key
      * @param string $string
@@ -103,11 +106,11 @@ abstract class FiltersAbstract
 
     public function addRangeFilter($key, $min, $max)
     {
-        $array = array(
+        $array = [
             'key'   => $key,
             'min'   => $min,
             'max'   => $max,
-        );
+        ];
 
         return $this->add($array);
     }
@@ -119,7 +122,7 @@ abstract class FiltersAbstract
 
     /**
      * Sintaxe de retorno:
-     * <code>
+     * <code>.
      *
      * array(                                 // Filters only support integer values
      *     array(
@@ -139,5 +142,4 @@ abstract class FiltersAbstract
     {
         return $this->list;
     }
-
 }

@@ -1,19 +1,27 @@
 <?php
 
+/*
+ * This file is part of gpupo/petfinder
+ *
+ * (c) Gilmar Pupo <g@g1mr.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Gpupo\Tests\Petfinder\Search\Paginator;
 
-use Gpupo\Tests\Petfinder\TestCaseAbstract;
-
-use Gpupo\Petfinder\Search\Search;
 use Gpupo\Petfinder\Search\Paginator\Paginator;
-use Gpupo\Petfinder\Search\Query\Query;
 use Gpupo\Petfinder\Search\Query\Keywords;
+use Gpupo\Petfinder\Search\Query\Query;
+use Gpupo\Petfinder\Search\Search;
+use Gpupo\Tests\Petfinder\TestCaseAbstract;
 
 class PaginatorTest extends TestCaseAbstract
 {
     protected function getResultCollection($word)
     {
-        $keywords = new Keywords;
+        $keywords = new Keywords();
         $keywords->addKeyword($word);
 
         $query = new Query($keywords);
@@ -42,49 +50,44 @@ class PaginatorTest extends TestCaseAbstract
         $paginator = $results->getPaginator();
         $paginator->paginateResult($results, 1, 10);
         $this->assertEquals($results->getTotal(), $paginator->getTotalItemCount());
-
     }
 
     /**
-     *
      * @dataProvider dataProviderOffset
      */
     public function testMarcaAPaginaAtual($page, $resultados, $limit)
     {
-        $paginator = new Paginator;
+        $paginator = new Paginator();
         $paginator->paginate($resultados, $page, $limit);
         $this->assertEquals($page, $paginator->getCurrentPageNumber());
     }
     /**
-     *
      * @dataProvider dataProviderOffset
      */
     public function testManipulaOffsetDeQuery($page, $resultados, $limit, $expectedValue)
     {
-        $paginator = new Paginator;
+        $paginator = new Paginator();
         $paginator->paginate($resultados, $page, $limit);
         $this->assertEquals($expectedValue, $paginator->getOffset());
     }
 
     /**
-     *
      * @dataProvider dataProviderOffset
      */
     public function testManipulaLimitDeQuery($page, $resultados, $limit)
     {
-        $paginator = new Paginator;
+        $paginator = new Paginator();
         $paginator->paginate($resultados, $page, $limit);
         $this->assertEquals($limit, $paginator->getItemNumberPerPage());
     }
 
     /**
-     *
      * @dataProvider dataProviderPaginas
      */
     public function testDivideResultadosEmPaginasDeAcordoComLimite($resultados,
         $page, $limit, $expectedPages)
     {
-        $paginator = new Paginator;
+        $paginator = new Paginator();
         $this->assertInstanceOf('\Gpupo\Petfinder\Search\Paginator\PaginatorInterface', $paginator);
         $paginator->paginate($resultados, $page, $limit);
 
@@ -92,12 +95,11 @@ class PaginatorTest extends TestCaseAbstract
     }
 
     /**
-     *
      * @dataProvider dataProviderRanges
      */
     public function testAcessoAoRangeDePaginasAproximadas($page, $resultados, $limit, array $rangeExpected)
     {
-        $paginator = new Paginator;
+        $paginator = new Paginator();
         $paginator->paginate($resultados, $page, $limit);
 
         $data = $paginator->getPaginationData();
@@ -106,12 +108,11 @@ class PaginatorTest extends TestCaseAbstract
     }
 
     /**
-     *
      * @dataProvider dataProviderCustomRanges
      */
     public function testPermiteCustomizacaoDoRangeDePaginasParaNavegacao($page, $resultados, $limit, $range, $rangeExpected)
     {
-        $paginator = new Paginator;
+        $paginator = new Paginator();
         $paginator->paginate($resultados, $page, $limit);
         $paginator->setPageRange($range);
 
@@ -121,15 +122,14 @@ class PaginatorTest extends TestCaseAbstract
     }
 
     /**
-     *
      * @dataProvider dataProviderLongRanges
      */
     public function testAcessoAValoresDaPaginacao($page, $resultados, $limit)
     {
-        $paginator = new Paginator;
+        $paginator = new Paginator();
         $paginator->paginate($resultados, $page, $limit);
 
-        $list = array(
+        $list = [
             'last',
             'current',
             'numItemsPerPage',
@@ -141,7 +141,7 @@ class PaginatorTest extends TestCaseAbstract
             'pagesInRange',
             'firstPageInRange',
             'lastPageInRange',
-        );
+        ];
 
         foreach ($list as $k) {
             $this->assertArrayHasKey($k, $paginator->getPaginationData());
@@ -152,84 +152,80 @@ class PaginatorTest extends TestCaseAbstract
     {
         $array = $this->dataProviderLongRanges();
 
-        $array[] = array(2, 20,  10, array(1,2));
+        $array[] = [2, 20,  10, [1,2]];
 
         return $array;
     }
 
     /**
-     *
      * @return array [page, resultados, limit]
      */
     public function dataProviderLongRanges()
     {
-        return array(
+        return [
 
-            array(5, 100, 10, array(3,4,5,6,7)),
-            array(6, 100, 10, array(4,5,6,7,8)),
-            array(7, 100, 10, array(5,6,7,8,9)),
-            array(8, 100, 10, array(6,7,8,9,10)),
-        );
+            [5, 100, 10, [3,4,5,6,7]],
+            [6, 100, 10, [4,5,6,7,8]],
+            [7, 100, 10, [5,6,7,8,9]],
+            [8, 100, 10, [6,7,8,9,10]],
+        ];
     }
 
     /**
-     *
      * @return array [page, resultados, limit, $range, expectedRange]
      */
     public function dataProviderCustomRanges()
     {
-        return array(
-            array(5, 100, 10, 3, array(4,5,6)),
-            array(5, 100, 10, 7, array(2,3,4,5,6,7,8)),
-            array(5, 100, 10, 9, array(1,2,3,4,5,6,7,8,9)),
-            array(5, 100, 10, 11, array(1,2,3,4,5,6,7,8,9,10)),
-            array(5, 100, 10, 21, array(1,2,3,4,5,6,7,8,9,10)),
-            array(5, 100, 2, 11, array(1,2,3,4,5,6,7,8,9,10,11)),
-            array(5, 100, 2, 13, array(1,2,3,4,5,6,7,8,9,10,11,12,13)),
-        );
+        return [
+            [5, 100, 10, 3, [4,5,6]],
+            [5, 100, 10, 7, [2,3,4,5,6,7,8]],
+            [5, 100, 10, 9, [1,2,3,4,5,6,7,8,9]],
+            [5, 100, 10, 11, [1,2,3,4,5,6,7,8,9,10]],
+            [5, 100, 10, 21, [1,2,3,4,5,6,7,8,9,10]],
+            [5, 100, 2, 11, [1,2,3,4,5,6,7,8,9,10,11]],
+            [5, 100, 2, 13, [1,2,3,4,5,6,7,8,9,10,11,12,13]],
+        ];
     }
     /**
-     *
      * @return array [resultados,page,limit,expectedPages]
      */
     public function dataProviderPaginas()
     {
-        return array(
-            array(100, 1, 10, 10),
-            array(10, 1, 10, 1),
-            array(99, 1, 10, 10),
-            array(101, 1, 10, 11),
-            array(11, 1, 10, 2),
-            array(11, 1, 2, 6),
-        );
+        return [
+            [100, 1, 10, 10],
+            [10, 1, 10, 1],
+            [99, 1, 10, 10],
+            [101, 1, 10, 11],
+            [11, 1, 10, 2],
+            [11, 1, 2, 6],
+        ];
     }
 
     public function dataProviderOffset()
     {
         //page,results,limit,expectedValue
-        return array(
-            array(
-                3,10,2,4
-            ),
-            array(
-                3,100,10,20
-            ),
-            array(
-                4,100,10,30
-            ),
-            array(
-                5,100,10,40
-            ),
-            array(
-                9,99,10,80
-            ),
-            array(
-                9,99,1,8
-            ),
-            array(
-                99,99,1,98
-            ),
-        );
+        return [
+            [
+                3,10,2,4,
+            ],
+            [
+                3,100,10,20,
+            ],
+            [
+                4,100,10,30,
+            ],
+            [
+                5,100,10,40,
+            ],
+            [
+                9,99,10,80,
+            ],
+            [
+                9,99,1,8,
+            ],
+            [
+                99,99,1,98,
+            ],
+        ];
     }
-
 }

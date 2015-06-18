@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -10,16 +11,16 @@
 
 namespace Gpupo\Petfinder\Search\Result;
 
-use Gpupo\Petfinder\Search\Paginator\PaginatorInterface;
 use Gpupo\Petfinder\Search\Core\CollectionAbstract as CoreCollectionAbstract;
+use Gpupo\Petfinder\Search\Paginator\PaginatorInterface;
 
 /**
- * Conjunto de Itens de resultado
+ * Conjunto de Itens de resultado.
  */
 abstract class CollectionAbstract  extends CoreCollectionAbstract
 {
     /**
-     * Lista de documentos encontrados
+     * Lista de documentos encontrados.
      */
     public function getMatches()
     {
@@ -27,7 +28,7 @@ abstract class CollectionAbstract  extends CoreCollectionAbstract
     }
 
     /**
-     * Quantidade de documentos encontrados para a query, independente da paginação
+     * Quantidade de documentos encontrados para a query, independente da paginação.
      */
     public function getTotal()
     {
@@ -43,7 +44,7 @@ abstract class CollectionAbstract  extends CoreCollectionAbstract
     }
 
     /**
-     * Tempo necessário para a pesquisa
+     * Tempo necessário para a pesquisa.
      */
     public function getTime()
     {
@@ -51,7 +52,7 @@ abstract class CollectionAbstract  extends CoreCollectionAbstract
     }
 
     /**
-     * Detalhes dos resultados para cada palavra
+     * Detalhes dos resultados para cada palavra.
      */
     public function getWords()
     {
@@ -59,14 +60,14 @@ abstract class CollectionAbstract  extends CoreCollectionAbstract
     }
 
     /**
-     * Detalhes dos resultados para cada palavra
+     * Detalhes dos resultados para cada palavra.
      */
     public function getSummary()
     {
         $string = "---\n";
         foreach ($this->getWords() as $k => $v) {
-            $string .= "[" . $k . ']: Docs:' . $v['docs']
-                . ' | Hits:' . $v['hits'] . "\n";
+            $string .= '['.$k.']: Docs:'.$v['docs']
+                .' | Hits:'.$v['hits']."\n";
         }
 
         return $string;
@@ -84,11 +85,9 @@ abstract class CollectionAbstract  extends CoreCollectionAbstract
 
     public function paginate($limit, $offset = 0)
     {
-
     }
 
     /**
-     *
      * @return ItemInterface
      */
     public function factoryItem(array $array)
@@ -102,20 +101,19 @@ abstract class CollectionAbstract  extends CoreCollectionAbstract
     }
 
     /**
-     *
      * @param array $array Lista de resultados
      */
     public function load(array $array = null)
     {
         if ($array) {
-            $list = array();
+            $list = [];
 
             if (array_key_exists('matches', $array)) {
                 $matches = $array['matches'];
-                unset ($array['matches']);
+                unset($array['matches']);
             } elseif (array_key_exists('matches', $array[0])) {
                 $matches = $array[0]['matches'];
-                unset ($array[0]['matches']);
+                unset($array[0]['matches']);
                 $array = $array[0];
             } else {
                 return parent::__construct($array);
@@ -148,7 +146,7 @@ abstract class CollectionAbstract  extends CoreCollectionAbstract
     }
 
     /**
-     * First item found
+     * First item found.
      *
      * @return Item
      */

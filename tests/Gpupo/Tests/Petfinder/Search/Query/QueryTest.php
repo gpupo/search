@@ -1,27 +1,36 @@
 <?php
 
+/*
+ * This file is part of gpupo/petfinder
+ *
+ * (c) Gilmar Pupo <g@g1mr.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Gpupo\Tests\Petfinder\Search\Query;
 
-use Gpupo\Tests\Petfinder\TestCaseAbstract;
-use Gpupo\Petfinder\Search\Search;
-use Gpupo\Petfinder\Search\Query\Query;
-use Gpupo\Petfinder\Search\Query\Keywords;
 use Gpupo\Petfinder\Search\Query\Filters;
-use Gpupo\Petfinder\Search\Query\KeywordsInterface;
-use Gpupo\Petfinder\Search\Query\QueryInterface;
 use Gpupo\Petfinder\Search\Query\FiltersInterface;
+use Gpupo\Petfinder\Search\Query\Keywords;
+use Gpupo\Petfinder\Search\Query\KeywordsInterface;
+use Gpupo\Petfinder\Search\Query\Query;
+use Gpupo\Petfinder\Search\Query\QueryInterface;
+use Gpupo\Petfinder\Search\Search;
+use Gpupo\Tests\Petfinder\TestCaseAbstract;
 
 class QueryTest extends TestCaseAbstract
 {
     public function testPalavrasChavesModeladasEmObjeto()
     {
-        $keywords = new Keywords;
+        $keywords = new Keywords();
         $keywords->addKeyword('shampoo');
         $keywords->addKeyword('condicionador');
 
         $data = $keywords->getData();
 
-        foreach (array('key', 'values', 'strict') as $key) {
+        foreach (['key', 'values', 'strict'] as $key) {
             $this->assertArrayHasKey($key, $data);
         }
 
@@ -38,7 +47,6 @@ class QueryTest extends TestCaseAbstract
      */
     public function testPesquisaAPartirDeQueriesModeladas(KeywordsInterface $keywords)
     {
-
         $query = new Query($keywords);
         $query->setIndex('produtoIndex');
 
@@ -56,7 +64,6 @@ class QueryTest extends TestCaseAbstract
     }
 
     /**
-     *
      * @depends testPesquisaAPartirDeQueriesModeladas
      */
     public function testQueriesPossuemAtributosModeladosEControlados(QueryInterface $query)
@@ -68,7 +75,7 @@ class QueryTest extends TestCaseAbstract
 
     public function testRecebeEntradaDeLimitesDeResultados()
     {
-        $keywords = new Keywords;
+        $keywords = new Keywords();
         $query = new Query($keywords);
         $query->setLimit(30);
         $this->assertEquals(30, $query->getLimit());
@@ -88,10 +95,10 @@ class QueryTest extends TestCaseAbstract
         return $query;
     }
 
-   /**
-    * @depends           testRecebeEntradaDeOffsetParaResultados
-    * @expectedException Exception
-    */
+    /**
+     * @depends           testRecebeEntradaDeOffsetParaResultados
+     * @expectedException Exception
+     */
     public function testValidaEntradaDeOffsetParaResultados(QueryInterface $query)
     {
         $query->setOffset('fail');
@@ -103,17 +110,17 @@ class QueryTest extends TestCaseAbstract
      */
     public function testValidaEntradaDeLimitesDeResultados()
     {
-        $keywords = new Keywords;
+        $keywords = new Keywords();
         $query = new Query($keywords);
         $query->setLimit('fail');
     }
 
     public function testPermitePesquisaEmMultiplosIndices()
     {
-        $keywordsList = array();
-        $keywordsList['first'] = new Keywords;
-        $keywordsList['second'] = new Keywords;
-        $keywordsList['other'] = new Keywords;
+        $keywordsList = [];
+        $keywordsList['first'] = new Keywords();
+        $keywordsList['second'] = new Keywords();
+        $keywordsList['other'] = new Keywords();
         $query = new Query();
         $query->setKeywords($keywordsList);
         $this->assertEquals(3, count($query->getKeywords()));
@@ -122,10 +129,10 @@ class QueryTest extends TestCaseAbstract
         return $keywordsList;
     }
 
-   /**
-    * @depends           testPermitePesquisaEmMultiplosIndices
-    * @expectedException Exception
-    */
+    /**
+     * @depends           testPermitePesquisaEmMultiplosIndices
+     * @expectedException Exception
+     */
     public function testValidaEntradaParaMultiplosIndices($keywordsList)
     {
         $keywordsList[] = new \stdClass();
@@ -135,8 +142,8 @@ class QueryTest extends TestCaseAbstract
 
     public function testPossuiFiltrosModelados()
     {
-        $filters = new Filters;
-        $filters->addValuesFilter('fornecedor_id', array(285));
+        $filters = new Filters();
+        $filters->addValuesFilter('fornecedor_id', [285]);
 
         $this->assertEquals(1, count($filters->toArray()));
         $filter = current($filters->toArray());
@@ -152,7 +159,7 @@ class QueryTest extends TestCaseAbstract
      */
     public function testRecebeEntradaDeFiltros(FiltersInterface $filters)
     {
-        $keywords = new Keywords;
+        $keywords = new Keywords();
         $keywords->addKeyword('shampoo');
 
         $query = new Query();
@@ -171,22 +178,22 @@ class QueryTest extends TestCaseAbstract
     public function testValidaEntradaDeFiltros()
     {
         $query = new Query();
-        $query->setFilters(array());
+        $query->setFilters([]);
     }
 
     public function dataProviderKeywords()
     {
-        $keywords = new Keywords;
+        $keywords = new Keywords();
 
-        return array(
-            array($keywords),
-        );
+        return [
+            [$keywords],
+        ];
     }
 
     public function testSuporteABuscaFacetadaPorUmAtributo()
     {
         //Queries sem contagem de atributos nao possuem countableAttribute
-        $keywords = new Keywords;
+        $keywords = new Keywords();
         $keywords->addKeyword('shampoo');
         $query = new Query();
         $query->setKeyword($keywords);
@@ -206,8 +213,8 @@ class QueryTest extends TestCaseAbstract
 
     public function testSuporteABuscaFacetadaPorMuitosAtributos()
     {
-        $countableAttributes = array('categoria','fornecedor', 'tamanho');
-        $keywords = new Keywords;
+        $countableAttributes = ['categoria','fornecedor', 'tamanho'];
+        $keywords = new Keywords();
         $keywords->addKeyword('shampoo');
         $query = new Query();
         $query->setKeyword($keywords);
@@ -226,9 +233,9 @@ class QueryTest extends TestCaseAbstract
 
     public function testEvitaContagemPorAtributosDuplicada()
     {
-        $countableAttributes = array('categoria','fornecedor', 'tamanho',
-            'categoria', 'fornecedor', 'categoria');
-        $keywords = new Keywords;
+        $countableAttributes = ['categoria','fornecedor', 'tamanho',
+            'categoria', 'fornecedor', 'categoria', ];
+        $keywords = new Keywords();
         $keywords->addKeyword('shampoo');
         $query = new Query();
         $query->setKeyword($keywords);

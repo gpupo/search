@@ -1,21 +1,30 @@
 <?php
 
+/*
+ * This file is part of gpupo/petfinder
+ *
+ * (c) Gilmar Pupo <g@g1mr.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Gpupo\Petfinder\Search\Result;
 
 abstract class ItemAbstract extends \Gpupo\Petfinder\Search\Core\CollectionAbstract
 {
     /**
-     * Acesso aos atributos fornecidos pelo SphinxSearch
+     * Acesso aos atributos fornecidos pelo SphinxSearch.
      *
      * @return array
      */
     protected function getAtributos()
     {
-       return $this->get('attrs');
+        return $this->get('attrs');
     }
 
     /**
-     * Acesso a um atributo específico
+     * Acesso a um atributo específico.
      *
      * @param string $chave
      */
@@ -27,31 +36,32 @@ abstract class ItemAbstract extends \Gpupo\Petfinder\Search\Core\CollectionAbstr
             return $attrs[$key];
         }
 
-        return null;
+        return;
     }
 
     protected function toLineString($chave)
     {
-        $method = 'get' . ucfirst($chave);
+        $method = 'get'.ucfirst($chave);
 
-        $string = " - " . $chave . ":" . $this->$method();
+        $string = ' - '.$chave.':'.$this->$method();
         $string .= "\n";
 
         return $string;
     }
 
     /**
-     * Magic method that implements
+     * Magic method that implements.
      *
      * @param string $method
      * @param array  $args
      *
      * @throws \BadMethodCallException
+     *
      * @return mixed
      */
     public function __call($method, $args)
     {
-        if (substr($method, 0, 3) == "get") {
+        if (substr($method, 0, 3) === 'get') {
             return  $this->get($this->__calculateFieldName($method));
         }
 

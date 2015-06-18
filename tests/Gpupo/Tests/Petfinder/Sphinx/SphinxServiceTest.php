@@ -1,10 +1,19 @@
 <?php
 
+/*
+ * This file is part of gpupo/petfinder
+ *
+ * (c) Gilmar Pupo <g@g1mr.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Gpupo\Tests\Petfinder\Sphinx;
 
-use Gpupo\Tests\Petfinder\TestCaseAbstract;
-use Gpupo\Petfinder\Sphinx\SphinxService;
 use Gpupo\Petfinder\Sphinx\SphinxClient;
+use Gpupo\Petfinder\Sphinx\SphinxService;
+use Gpupo\Tests\Petfinder\TestCaseAbstract;
 
 class SphinxServiceTest extends TestCaseAbstract
 {
@@ -12,18 +21,18 @@ class SphinxServiceTest extends TestCaseAbstract
     {
         $parameters = SphinxService::getInstance()->getParameters();
 
-        foreach (array('host', 'port', 'timeout') as $key) {
+        foreach (['host', 'port', 'timeout'] as $key) {
             $this->assertTrue($parameters->offsetExists($key));
         }
     }
 
     public function testPermiteDefinicaoDeParametrosPersonalizados()
     {
-        $array = array(
+        $array = [
             'host'      => 'example.com',
             'port'      => 9312,
             'timeout'   => 5,
-        );
+        ];
 
         $parameters = SphinxService::getInstance()->setParameters($array)
             ->getParameters();
