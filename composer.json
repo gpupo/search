@@ -10,9 +10,16 @@
         "zendframework/zend-validator": "2.*",
         "zendframework/zend-filter": "2.*"
     },
+    "suggest": {
+        "monolog/monolog": "Write Log messages"
+    },
     "autoload": {
         "psr-4": {
-            "Gpupo\\Petfinder\\": "src",
+            "Gpupo\\Petfinder\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Gpupo\\Tests\\Petfinder\\": "tests"
         }
     },
@@ -22,6 +29,9 @@
     "require-dev": {
         "phpunit/phpunit": "~4.0",
         "codeclimate/php-test-reporter": "dev-master"
+    },
+    "config": {
+        "preferred-install": "dist"
     },
     "minimum-stability" : "stable"
 }
