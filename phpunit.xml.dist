@@ -13,9 +13,9 @@
 >
     <!-- Customize Sphinx Search Server parameters ! -->
     <php>
-        <const name="SPHINX_HOST" value="localhost"/>
-        <const name="SPHINX_PORT" value="9313"/>
-        <const name="SPHINX_TIMEOUT" value="5"/>
+        <!--const name="SPHINX_HOST" value="localhost"/-->
+        <!--const name="SPHINX_PORT" value="9313"/-->
+        <!--const name="SPHINX_TIMEOUT" value="5"/-->
     </php>
     <testsuites>
     <testsuite name="Main Test Suite">

@@ -34,6 +34,10 @@ class PaginatorTest extends TestCaseAbstract
 
     public function testResultadosPossuiObjetoModeladoParaPaginacao()
     {
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $results = $this->getResultCollection('shampoo');
         $this->assertInstanceOf('\Gpupo\Petfinder\Search\Paginator\PaginableInterface', $results);
         $this->assertInstanceOf('\Gpupo\Petfinder\Search\Paginator\PaginatorInterface', $results->getPaginator());

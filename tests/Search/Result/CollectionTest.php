@@ -22,6 +22,10 @@ class CollectionTest extends TestCaseAbstract
      */
     public function testResultadosComPropriedadesProcessadas($keyword)
     {
+        if (!$this->hasHost()) {
+            return $this->markTestSkipped();
+        }
+
         $collection = new Collection();
         $results = Search::getInstance()->getResultsByKeyword($keyword, $collection);
 

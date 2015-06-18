@@ -15,10 +15,36 @@ use Gpupo\Petfinder\Sphinx\SphinxService;
 
 abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
 {
+    protected function getConstant($name, $default = false)
+    {
+        if (defined($name)) {
+            return constant($name);
+        }
+
+        return $default;
+    }
+
+    protected function hasConstant($name)
+    {
+        $value = $this->getConstant($name);
+
+        return empty($value) ? false : true;
+    }
+
+    protected function getSphinxHost()
+    {
+        return $this->getConstant('SPHINX_HOST');
+    }
+
+    protected function hasHost()
+    {
+        return ($this->getSphinxHost());
+    }
+
     protected function getSphinxServerParameters()
     {
         return [
-            'host'      => SPHINX_HOST,
+            'host'      => $this->getSphinxHost(),
             'port'      => SPHINX_PORT,
             'timeout'   => SPHINX_TIMEOUT,
         ];
@@ -29,8 +55,10 @@ abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        SphinxService::getInstance()
-            ->setParameters($this->getSphinxServerParameters());
+        if ($this->hasHost()) {
+            SphinxService::getInstance()
+                ->setParameters($this->getSphinxServerParameters());
+        }
     }
     /**
      * Verifica se uma string possui a ocorroncia de um dos valores do array informado.
