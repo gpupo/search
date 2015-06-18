@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -16,13 +17,12 @@ use Gpupo\Petfinder\Search\Paginator\PaginatorInterface;
 
 abstract class QueryAbstract extends CollectionAbstract implements PaginableInterface
 {
-
     protected static $_instance;
 
     public static function getInstance()
     {
         if (!isset(self::$_instance)) {
-            $class=get_called_class();
+            $class = get_called_class();
             self::$_instance = new $class();
         }
 
@@ -37,20 +37,19 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     *
      * @param \Gpupo\Petfinder\Search\Query\KeywordsInterface $keywords
      */
     public function __construct(KeywordsInterface $keywords = null)
     {
-        $data = array (
+        $data = [
             'index'                 => null,
             'filters'               => null,
-            'keywords'              => array('primary' => $keywords),
-            'fieldWeights'          => array(),
+            'keywords'              => ['primary' => $keywords],
+            'fieldWeights'          => [],
             'limit'                 => 20,
             'offset'                => null,
-            'countableAttributes'   => array(),
-        );
+            'countableAttributes'   => [],
+        ];
 
         parent::__construct($data);
     }
@@ -58,12 +57,13 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     /**
      * Objeto de pesquisa.
      *
-     * @param  \Gpupo\Petfinder\Search\Query\KeywordsInterface $keyword
+     * @param \Gpupo\Petfinder\Search\Query\KeywordsInterface $keyword
+     *
      * @return type
      */
     public function setKeyword(KeywordsInterface $keyword)
     {
-        return $this->set('keywords', array('primary' => $keyword));
+        return $this->set('keywords', ['primary' => $keyword]);
     }
 
     public function setKeywords(array $keywordsList)
@@ -78,7 +78,7 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     * Acesso a um conjunto de KeywordsInterface
+     * Acesso a um conjunto de KeywordsInterface.
      *
      * @todo Evoluir o uso da busca facetada para mais de uma Keyword
      */
@@ -95,11 +95,11 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
             return $this->get('filters')->toArray();
         }
 
-        return null;
+        return;
     }
 
     /**
-     * SphinxSearch Queries Array
+     * SphinxSearch Queries Array.
      *
      * <code>
      *
@@ -134,11 +134,10 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
      * );
      *
      * </code>
-     *
      */
     public function getQueries()
     {
-        $array = array();
+        $array = [];
         foreach ($this->getKeywords() as $keyword) {
             $value = $keyword->getData();
             if ($this->getCountableAttributes()) {
@@ -151,8 +150,7 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     *
-     * Field weights sintaxe:
+     * Field weights sintaxe:.
      *
      * <code>
      *
@@ -170,9 +168,9 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     * Acesso a quantidade de itens por pagina
+     * Acesso a quantidade de itens por pagina.
      *
-     * @return integer
+     * @return int
      */
     public function getLimit()
     {
@@ -184,13 +182,13 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     * Offsets the result list by the number of places set by the count;
+     * Offsets the result list by the number of places set by the count;.
      *
      * This would be used for pagination through results, where if you have 20
      * results per 'page', the second page would begin at offset 20, the third
      * page at offset 40, etc.
      *
-     * @return integer
+     * @return int
      */
     public function getOffSet()
     {
@@ -208,10 +206,11 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     * Mapeamento de index SphinxSearch
+     * Mapeamento de index SphinxSearch.
+     *
+     * @throws \InvalidArgumentException
      *
      * @return string
-     * @throws \InvalidArgumentException
      */
     public function getIndex()
     {
@@ -225,11 +224,13 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     * Mapeamento de index SphinxSearch
+     * Mapeamento de index SphinxSearch.
      *
-     * @param  string                    $index
-     * @return bool
+     * @param string $index
+     *
      * @throws \InvalidArgumentException
+     *
+     * @return bool
      */
     public function setIndex($index)
     {
@@ -251,7 +252,6 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
 
     public function setFieldWeights()
     {
-
     }
 
     public function setLimit($limit)
@@ -275,8 +275,7 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     *
-     * @return \Gpupo\Petfinder\Search\Paginator\PaginatorInterface|boolean
+     * @return \Gpupo\Petfinder\Search\Paginator\PaginatorInterface|bool
      */
     public function getPaginator()
     {
@@ -300,12 +299,13 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     * Adiciona um atributo para contagem de resultados
+     * Adiciona um atributo para contagem de resultados.
      *
      * Usado na busca facetada
      *
-     * @param  string  $attribute
-     * @return boolean
+     * @param string $attribute
+     *
+     * @return bool
      */
     public function addCountableAttribute($attribute)
     {
@@ -313,7 +313,7 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
             return false;
         }
 
-        if (in_array($attribute, $this->getCountableAttributes())) {
+        if (in_array($attribute, $this->getCountableAttributes(), true)) {
             return false;
         }
         $this->addToArrayValue('countableAttributes', $attribute);
@@ -322,7 +322,7 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     * Adiciona muitos atributos para contagem de resultados
+     * Adiciona muitos atributos para contagem de resultados.
      *
      * @param array $attributes
      */

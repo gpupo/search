@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -13,13 +14,12 @@ namespace Gpupo\Petfinder\Search\Paginator;
 interface PaginatorInterface
 {
     /**
-     * @param integer $pageNumber
+     * @param int $pageNumber
      */
     public function setCurrentPageNumber($pageNumber);
 
     /**
-     * @param integer $numItemsPerPage
+     * @param int $numItemsPerPage
      */
     public function setItemNumberPerPage($numItemsPerPage);
-
 }

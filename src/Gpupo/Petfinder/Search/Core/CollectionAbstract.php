@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -17,12 +18,12 @@ abstract class CollectionAbstract extends ArrayCollection
     protected static $_instance;
 
     /**
-     * Permite acesso a instancia dinamica
+     * Permite acesso a instancia dinamica.
      */
     public static function getInstance()
     {
         if (!isset(self::$_instance)) {
-            $class=get_called_class();
+            $class = get_called_class();
             self::$_instance = new $class();
         }
 
@@ -30,10 +31,11 @@ abstract class CollectionAbstract extends ArrayCollection
     }
 
     /**
-     * Adiciona um elemento no final de um valor array existente
+     * Adiciona um elemento no final de um valor array existente.
      *
-     * @param  string          $key
-     * @param  mixed           $value
+     * @param string $key
+     * @param mixed  $value
+     *
      * @throws \LogicException
      */
     public function addToArrayValue($key, $value)
@@ -49,12 +51,13 @@ abstract class CollectionAbstract extends ArrayCollection
     }
 
     /**
-     * Magic method that implements
+     * Magic method that implements.
      *
      * @param string $method
      * @param array  $args
      *
      * @throws \BadMethodCallException
+     *
      * @return mixed
      */
     public function __call($method, $args)
@@ -62,21 +65,22 @@ abstract class CollectionAbstract extends ArrayCollection
         $command = substr($method, 0, 3);
         $field = $this->__calculateFieldName($method);
 
-        if ($command == "set") {
+        if ($command === 'set') {
             $this->set($field, $args);
-        } elseif ($command == "get") {
+        } elseif ($command === 'get') {
             return $this->get($field);
-        } elseif ($command == "add") {
+        } elseif ($command === 'add') {
             $this->add($field, $args);
         } else {
-            throw new \BadMethodCallException("There is no method ".$method);
+            throw new \BadMethodCallException('There is no method '.$method);
         }
     }
 
     /**
-     * Encontra o nome de uma coluna snake_case para um getter
+     * Encontra o nome de uma coluna snake_case para um getter.
      *
-     * @param  string $method
+     * @param string $method
+     *
      * @return string
      */
     protected function __calculateFieldName($method)

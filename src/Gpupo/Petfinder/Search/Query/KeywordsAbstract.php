@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -12,11 +13,11 @@ namespace Gpupo\Petfinder\Search\Query;
 
 abstract class KeywordsAbstract
 {
-    protected $data = array(
+    protected $data = [
         'key'    => '*',
-        'values' => array(),
+        'values' => [],
         'strict' => false,
-    );
+    ];
 
     public function addKeyword($string)
     {
@@ -39,11 +40,11 @@ abstract class KeywordsAbstract
 
     public function setData($key, array $values, $strict = false)
     {
-        $array = array(
+        $array = [
             'key'       => $key,
             'values'    => $values,
             'strict'    => $strict,
-        );
+        ];
 
         return $this->data = $array;
     }
@@ -64,15 +65,15 @@ abstract class KeywordsAbstract
     }
 
     /**
-     * Recebe a string pesquisada
+     * Recebe a string pesquisada.
      *
      * @param string $string
      */
     public function readString($string)
     {
         $string = str_replace(
-            array("'",'"', 'buscar', '�'),
-            array(' ', ' ', ' ', ' '),
+            ["'", '"', 'buscar', '�'],
+            [' ', ' ', ' ', ' '],
             strtolower(trim($string))
         );
 
@@ -80,7 +81,7 @@ abstract class KeywordsAbstract
             throw new \InvalidArgumentException('Palavra chave nao pode ser vazia');
         }
 
-        if (strlen(preg_replace("/[^A-Za-z0-9?!]/",'',$string)) < 1) {
+        if (strlen(preg_replace('/[^A-Za-z0-9?!]/', '', $string)) < 1) {
             throw new \InvalidArgumentException('Palavra chave deve ter mais que 1 caracteres');
         }
 

@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -11,7 +12,7 @@
 namespace Gpupo\Petfinder\Search\Paginator;
 
 /**
- * Componente de paginacao de resultados da Busca
+ * Componente de paginacao de resultados da Busca.
  *
  * Não gerencia os itens de resultados, mas apenas os números de limite e offset
  * de uma query Sphinx Search
@@ -20,7 +21,6 @@ namespace Gpupo\Petfinder\Search\Paginator;
  */
 abstract class PaginatorAbstract
 {
-
     protected $range = 5;
     protected $currentPageNumber;
     protected $numItemsPerPage;
@@ -32,9 +32,9 @@ abstract class PaginatorAbstract
     }
 
     /**
-     * Get currently used page number
+     * Get currently used page number.
      *
-     * @return integer
+     * @return int
      */
     public function getCurrentPageNumber()
     {
@@ -47,9 +47,9 @@ abstract class PaginatorAbstract
     }
 
     /**
-     * Get number of items per page
+     * Get number of items per page.
      *
-     * @return integer
+     * @return int
      */
     public function getItemNumberPerPage()
     {
@@ -62,9 +62,9 @@ abstract class PaginatorAbstract
     }
 
     /**
-     * Get total item number available
+     * Get total item number available.
      *
-     * @return integer
+     * @return int
      */
     public function getTotalItemCount()
     {
@@ -72,13 +72,13 @@ abstract class PaginatorAbstract
     }
 
     /**
-     * Offsets the result list by the number of places set by the count;
+     * Offsets the result list by the number of places set by the count;.
      *
      * This would be used for pagination through results, where if you have 20
      * results per 'page', the second page would begin at offset 20, the third
      * page at offset 40, etc.
      *
-     * @return integer
+     * @return int
      */
     public function getOffset()
     {
@@ -86,11 +86,11 @@ abstract class PaginatorAbstract
     }
 
     /**
-     * Processa os valors de resultado
+     * Processa os valors de resultado.
      *
-     * @param integer $numTotal
-     * @param integer $page
-     * @param integer $limit
+     * @param int $numTotal
+     * @param int $page
+     * @param int $limit
      */
     public function paginate($numTotal, $page, $limit = 10)
     {
@@ -105,9 +105,9 @@ abstract class PaginatorAbstract
     }
 
     /**
-     * Pagination page range
+     * Pagination page range.
      *
-     * @param integer $range
+     * @param int $range
      */
     public function setPageRange($range)
     {
@@ -115,13 +115,12 @@ abstract class PaginatorAbstract
     }
 
     /**
-     * Pagination page range
+     * Pagination page range.
      *
-     * @return integer
+     * @return int
      */
     public function getPageRange()
     {
         return $this->range;
     }
-
 }

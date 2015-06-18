@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -16,9 +17,9 @@ namespace Gpupo\Petfinder\Search\Result;
 class CountableCollection extends CollectionAbstract
 {
     /**
-     * Nome do atributo que recebeu a contagem
+     * Nome do atributo que recebeu a contagem.
      *
-     * @var string
+     * @type string
      */
     protected $attributeName;
 
@@ -33,7 +34,7 @@ class CountableCollection extends CollectionAbstract
         return parent::__construct($array);
     }
     /**
-     * Nome do atributo que recebeu a contagem
+     * Nome do atributo que recebeu a contagem.
      *
      * @return string
      */

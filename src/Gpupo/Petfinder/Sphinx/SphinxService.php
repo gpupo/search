@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -20,13 +21,13 @@ class SphinxService
 
     protected $parameters;
 
-    public function setParameters(Array $customParameters = array())
+    public function setParameters(Array $customParameters = [])
     {
-        $defaultParameters = array(
+        $defaultParameters = [
             'host'    => 'localhost',
             'port'    => '9313',
             'timeout' => 5,
-        );
+        ];
 
         $array = array_merge($defaultParameters, $customParameters);
 
@@ -45,10 +46,10 @@ class SphinxService
     }
 
     /**
-    * Factory e Configuracao padrao de um SphinxClient
-    *
-    * @return SphinxClient
-    */
+     * Factory e Configuracao padrao de um SphinxClient.
+     *
+     * @return SphinxClient
+     */
     public function createService()
     {
         $host = $this->getParameters()->get('host');
@@ -61,7 +62,7 @@ class SphinxService
             );
         }
 
-        $sphinxClient = new SphinxClient;
+        $sphinxClient = new SphinxClient();
         $sphinxClient->SetServer($host, $port);
         $sphinxClient->SetConnectTimeout($timeout);
         $sphinxClient->SetArrayResult(true);
@@ -73,7 +74,7 @@ class SphinxService
     }
 
     /**
-     * Acesso ao Cliente Sphinx Server
+     * Acesso ao Cliente Sphinx Server.
      *
      * @return Gpupo\Petfinder\Sphinx\SphinxClient
      */
@@ -87,7 +88,7 @@ class SphinxService
     }
 
     /**
-     * Semelhante a *getClient()* mas com reset
+     * Semelhante a *getClient()* mas com reset.
      *
      * @return Gpupo\Petfinder\Sphinx\SphinxClient
      */
@@ -97,7 +98,7 @@ class SphinxService
     }
 
     /**
-     * Limpa informações de pesquisas anteriores
+     * Limpa informações de pesquisas anteriores.
      */
     public function reset()
     {
@@ -111,11 +112,10 @@ class SphinxService
     public static function getInstance()
     {
         if (!isset(self::$_instance)) {
-            $class=get_called_class();
+            $class = get_called_class();
             self::$_instance = new $class();
         }
 
         return self::$_instance;
     }
-
 }

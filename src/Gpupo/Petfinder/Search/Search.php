@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -10,11 +11,11 @@
 
 namespace Gpupo\Petfinder\Search;
 
-use Gpupo\Petfinder\Sphinx\SphinxService;
-use Gpupo\Petfinder\Search\Result\CollectionInterface;
-use Gpupo\Petfinder\Search\Result\Collection;
-use Gpupo\Petfinder\Search\Query\QueryInterface;
 use Gpupo\Petfinder\Search\Paginator\Paginator;
+use Gpupo\Petfinder\Search\Query\QueryInterface;
+use Gpupo\Petfinder\Search\Result\Collection;
+use Gpupo\Petfinder\Search\Result\CollectionInterface;
+use Gpupo\Petfinder\Sphinx\SphinxService;
 
 class Search  extends SearchAbstract implements SearchInterface
 {
@@ -23,7 +24,7 @@ class Search  extends SearchAbstract implements SearchInterface
     public static function getInstance()
     {
         if (!isset(self::$_instance)) {
-            $class=get_called_class();
+            $class = get_called_class();
             self::$_instance = new $class();
         }
 
@@ -42,7 +43,7 @@ class Search  extends SearchAbstract implements SearchInterface
             $query->getCountableAttributes()
         );
 
-        $paginator = new Paginator;
+        $paginator = new Paginator();
 
         if ($query->getPaginator()) {
             $page = $query->getPaginator()->getCurrentPageNumber();
@@ -61,13 +62,13 @@ class Search  extends SearchAbstract implements SearchInterface
         $results = $this->search(
                'produtoIndex',
                null,
-               array(array(
-                   'key'    => '*',
-                    'values' => array(
+               [[
+                   'key'     => '*',
+                    'values' => [
                        $keyword,
-                    ),
+                    ],
                    'strict' => false,
-               )),
+               ]],
                null,
                20,
                0
@@ -88,7 +89,6 @@ class Search  extends SearchAbstract implements SearchInterface
     }
 
     /**
-     *
      * @return CollectionInterface
      */
     public function factoryCollection(array $array)
@@ -99,10 +99,9 @@ class Search  extends SearchAbstract implements SearchInterface
     }
 
     /**
-     * Acesso ao Client Sphinx Search
+     * Acesso ao Client Sphinx Search.
      *
      * @return \SphinxClient
-     *
      */
     public function getSphinxClient()
     {
@@ -113,5 +112,4 @@ class Search  extends SearchAbstract implements SearchInterface
     {
         return SphinxService::getInstance();
     }
-
- }
+}

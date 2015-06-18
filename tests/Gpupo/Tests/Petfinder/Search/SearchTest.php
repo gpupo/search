@@ -1,12 +1,21 @@
 <?php
 
+/*
+ * This file is part of gpupo/petfinder
+ *
+ * (c) Gilmar Pupo <g@g1mr.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Gpupo\Tests\Petfinder\Search;
 
-use Gpupo\Tests\Petfinder\TestCaseAbstract;
-use Gpupo\Petfinder\Search\Search;
-use Gpupo\Petfinder\Search\Result\Collection;
-use Gpupo\Petfinder\Search\Query\Query;
 use Gpupo\Petfinder\Search\Query\Keywords;
+use Gpupo\Petfinder\Search\Query\Query;
+use Gpupo\Petfinder\Search\Result\Collection;
+use Gpupo\Petfinder\Search\Search;
+use Gpupo\Tests\Petfinder\TestCaseAbstract;
 
 class SearchTest extends TestCaseAbstract
 {
@@ -15,7 +24,7 @@ class SearchTest extends TestCaseAbstract
      */
     public function testResultadosContendoObjetosModelados($keyword)
     {
-        $collection = new Collection;
+        $collection = new Collection();
         $results = Search::getInstance()->getResultsByKeyword($keyword, $collection);
         $this->assertInstanceOf('\Gpupo\Petfinder\Search\Result\CollectionInterface', $results);
 
@@ -26,43 +35,41 @@ class SearchTest extends TestCaseAbstract
 
     public function testPesquisaPalavraChaveSimples()
     {
-         $results = Search::getInstance()->search(
+        $results = Search::getInstance()->search(
             'produtoIndex',
             null,
-            array(array(
-                'key'    => '*',
-                 'values' => array(
+            [[
+                'key'     => '*',
+                 'values' => [
                     'shampoo',
-                 ),
+                 ],
                 'strict' => false,
-            )),
+            ]],
             null,
             20,
             0
         );
 
-         $this->assertInternalType('array', $results);
+        $this->assertInternalType('array', $results);
 
-         foreach ($results as $item) {
-             $this->assertArrayHasKey('attrs', $item);
-             $this->stringContainOneOrAlternatives(@json_encode($item),
+        foreach ($results as $item) {
+            $this->assertArrayHasKey('attrs', $item);
+            $this->stringContainOneOrAlternatives(@json_encode($item),
                 'shampoo', 'condicionador');
-         }
+        }
 
-         return $results;
+        return $results;
     }
 
     /**
-     *
      * @depends testPesquisaPalavraChaveSimples
      */
     public function testPossuiQuantidadeLimiteDeResultados(array $results)
     {
+        $this->assertGreaterThan(10, count($results));
+        $this->assertLessThanOrEqual(20, count($results));
 
-       $this->assertGreaterThan(10, count($results));
-       $this->assertLessThanOrEqual(20, count($results));
-
-       return $results;
+        return $results;
     }
 
     /**
@@ -71,7 +78,7 @@ class SearchTest extends TestCaseAbstract
     public function testResultadosPossuemAtributos(array $results)
     {
         foreach ($results as $item) {
-            $this->assertArrayHasKey('attrs' , $item);
+            $this->assertArrayHasKey('attrs', $item);
         }
     }
 
@@ -80,30 +87,30 @@ class SearchTest extends TestCaseAbstract
         $results = Search::getInstance()->search(
             'produtoIndex',
             null,
-            array(array(
-                'key'    => '*',
-                 'values' => array(
+            [[
+                'key'     => '*',
+                 'values' => [
                     'shampoo',
                     'condicionador',
-                 ),
+                 ],
                 'strict' => false,
-            )),
+            ]],
             null,
             20,
             0
         );
 
-         $this->assertInternalType('array', $results);
+        $this->assertInternalType('array', $results);
 
-         foreach ($results as $item) {
+        foreach ($results as $item) {
             $this->assertArrayHasKey('attrs', $item);
             $this->assertArrayContainsOneOrMore(
-                array('shampoo','condicionador', 'cabelo', 'tratamento'),
+                ['shampoo', 'condicionador', 'cabelo', 'tratamento'],
                 $item
             );
-         }
+        }
 
-         return $results;
+        return $results;
     }
 
     public function testPesquisaPorParteDePalavra()
@@ -111,29 +118,29 @@ class SearchTest extends TestCaseAbstract
         $results = Search::getInstance()->search(
             'produtoIndex',
             null,
-            array(array(
-                'key'    => '*',
-                 'values' => array(
+            [[
+                'key'     => '*',
+                 'values' => [
                     'sham',
-                 ),
+                 ],
                 'strict' => false,
-            )),
+            ]],
             null,
             20,
             0
         );
 
-         foreach ($results as $item) {
-             $this->assertArrayHasKey('attrs', $item);
-             $this->assertArrayContainsOneOrMore('shampoo', $item);
-         }
+        foreach ($results as $item) {
+            $this->assertArrayHasKey('attrs', $item);
+            $this->assertArrayContainsOneOrMore('shampoo', $item);
+        }
 
-         return $results;
+        return $results;
     }
 
     public function testPesquisaComPalavrasForaDeOrdem()
     {
-        $keywords = new Keywords;
+        $keywords = new Keywords();
         $keywords->addKeyword('shampoo');
         $keywords->addKeyword('condicionador');
         $query = new Query($keywords);
@@ -142,7 +149,7 @@ class SearchTest extends TestCaseAbstract
         $total['mode_1'] = Search::getInstance()->findByQuery($query)->getTotal();
 
         //Mode 2
-        $keywords = new Keywords;
+        $keywords = new Keywords();
         $keywords->readString('shampoo condicionador');
         $query = new Query($keywords);
         $query->setIndex('produtoIndex');
@@ -150,7 +157,7 @@ class SearchTest extends TestCaseAbstract
         $total['mode_2'] = Search::getInstance()->findByQuery($query)->getTotal();
 
         //Mode 3
-        $keywords = new Keywords;
+        $keywords = new Keywords();
         $keywords->readString('condicionador shampoo');
         $query = new Query($keywords);
         $query->setIndex('produtoIndex');
@@ -167,13 +174,13 @@ class SearchTest extends TestCaseAbstract
         $results = Search::getInstance()->query(
             'produtoIndex',
             null,
-            array(array(
-                'key'    => '*',
-                 'values' => array(
+            [[
+                'key'     => '*',
+                 'values' => [
                     'shampoo',
-                 ),
+                 ],
                 'strict' => false,
-            )),
+            ]],
             null,
             20,
             0
@@ -206,13 +213,13 @@ class SearchTest extends TestCaseAbstract
         $collection = Search::getInstance()->getCollection(
             'produtoIndex',
             null,
-            array(array(
-                'key'    => '*',
-                 'values' => array(
-                    'shampoo'
-                 ),
+            [[
+                'key'     => '*',
+                 'values' => [
+                    'shampoo',
+                 ],
                 'strict' => false,
-            )),
+            ]],
             null,
             20,
             0
@@ -229,33 +236,33 @@ class SearchTest extends TestCaseAbstract
 
     public function dataProviderProdutosComMarcaNoNome()
     {
-        return array(
-            array('herrera', array('carolina', '212', 'ch')),
-            array('azzaro', array('chrome', 'edt', 'edp', 'visit')),
-            array('lacoste',array('edt', 'edp')),
-            array('rabanne', array('calandre', 'black xs', 'million')),
-        );
+        return [
+            ['herrera', ['carolina', '212', 'ch']],
+            ['azzaro', ['chrome', 'edt', 'edp', 'visit']],
+            ['lacoste',['edt', 'edp']],
+            ['rabanne', ['calandre', 'black xs', 'million']],
+        ];
     }
 
     public function testSuporteAMultiQueries()
     {
-        $query = array();
+        $query = [];
 
-        $query[] = array(
-            'key' => '*',
-            'values' => array(
+        $query[] = [
+            'key'    => '*',
+            'values' => [
                 'shampoo',
-            ),
+            ],
             'strict' => false,
-        );
+        ];
 
-        $query[] = array(
-            'key' => '*',
-            'values' => array(
+        $query[] = [
+            'key'    => '*',
+            'values' => [
                 'perfume',
-            ),
+            ],
             'strict' => false,
-        );
+        ];
 
         $multipleResults = Search::getInstance()->query(
             'produtoIndex', null, $query, null, 2, 0

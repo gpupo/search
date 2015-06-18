@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -14,12 +15,11 @@ use Gpupo\Petfinder\Search\Result\CollectionInterface;
 
 class Paginator extends PaginatorAbstract implements PaginatorInterface
 {
-
     public function paginateResult(CollectionInterface $collection, $page, $limit = 10)
     {
         $limit = intval(abs($limit));
         if (!$limit) {
-            throw new \LogicException("Invalid item per page number, must be a positive number");
+            throw new \LogicException('Invalid item per page number, must be a positive number');
         }
 
         $this->paginate($collection->getTotalFound(), $page, $limit);
@@ -31,14 +31,14 @@ class Paginator extends PaginatorAbstract implements PaginatorInterface
     {
         $pages = $this->getPages();
 
-        $viewData = array(
+        $viewData = [
             'last'              => $this->getPagesCount(),
             'current'           => $this->getCurrentPageNumber(),
             'numItemsPerPage'   => $this->getItemNumberPerPage(),
             'first'             => 1,
             'pageCount'         => $this->getPagesCount(),
             'totalCount'        => $this->getTotalItemCount(),
-        );
+        ];
 
         if ($this->getCurrentPageNumber() - 1 > 0) {
             $viewData['previous'] = $this->getCurrentPageNumber() - 1;
@@ -55,7 +55,7 @@ class Paginator extends PaginatorAbstract implements PaginatorInterface
     }
 
     /**
-     * Acesso ao range de paginas para navegacao
+     * Acesso ao range de paginas para navegacao.
      *
      * @return array
      */

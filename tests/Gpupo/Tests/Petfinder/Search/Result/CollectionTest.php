@@ -1,10 +1,19 @@
 <?php
 
+/*
+ * This file is part of gpupo/petfinder
+ *
+ * (c) Gilmar Pupo <g@g1mr.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Gpupo\Tests\Petfinder\Search\Result;
 
-use Gpupo\Tests\Petfinder\TestCaseAbstract;
-use Gpupo\Petfinder\Search\Search;
 use Gpupo\Petfinder\Search\Result\Collection;
+use Gpupo\Petfinder\Search\Search;
+use Gpupo\Tests\Petfinder\TestCaseAbstract;
 
 class CollectionTest extends TestCaseAbstract
 {
@@ -13,7 +22,7 @@ class CollectionTest extends TestCaseAbstract
      */
     public function testResultadosComPropriedadesProcessadas($keyword)
     {
-        $collection = new Collection;
+        $collection = new Collection();
         $results = Search::getInstance()->getResultsByKeyword($keyword, $collection);
 
         $this->assertInstanceOf('\Gpupo\Petfinder\Search\Result\CollectionInterface', $results);
@@ -29,8 +38,8 @@ class CollectionTest extends TestCaseAbstract
 
     public function dataProviderProdutosComMarcaNoNome()
     {
-        return array(
-            array('herrera', "carolina"),
-        );
+        return [
+            ['herrera', 'carolina'],
+        ];
     }
 }

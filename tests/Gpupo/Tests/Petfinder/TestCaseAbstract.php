@@ -1,23 +1,31 @@
 <?php
 
+/*
+ * This file is part of gpupo/petfinder
+ *
+ * (c) Gilmar Pupo <g@g1mr.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Gpupo\Tests\Petfinder;
 
 use Gpupo\Petfinder\Sphinx\SphinxService;
 
 abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
 {
-
     protected function getSphinxServerParameters()
     {
-        return array(
+        return [
             'host'      => SPHINX_HOST,
             'port'      => SPHINX_PORT,
             'timeout'   => SPHINX_TIMEOUT,
-        );
+        ];
     }
 
     /**
-     * Configure Sphinx Server Parameters
+     * Configure Sphinx Server Parameters.
      */
     public function setUp()
     {
@@ -25,11 +33,12 @@ abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
             ->setParameters($this->getSphinxServerParameters());
     }
     /**
-     * Verifica se uma string possui a ocorroncia de um dos valores do array informado
+     * Verifica se uma string possui a ocorroncia de um dos valores do array informado.
      *
-     * @param  string  $string
-     * @param  array   $findme
-     * @return boolean
+     * @param string $string
+     * @param array  $findme
+     *
+     * @return bool
      */
     public function stringContainsOneOfArray($string, array $findme)
     {
@@ -52,23 +61,23 @@ abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
             if (is_array($keywords)) {
                 array_unshift($keywords, $keyword);
             } else {
-                $keywords = array($keyword, $keywords);
+                $keywords = [$keyword, $keywords];
             }
         } else {
-            $keywords = array($keyword);
+            $keywords = [$keyword];
         }
 
         return $this->stringContainsOneOfArray($string, $keywords);
     }
 
-   /**
-    * Asserts that a string contains one keyword
-    *
-    * @param  string $keyword
-    * @param  string $string
-    * @param  string $message
-    * @param  array  $alternativeKeywords
-    */
+    /**
+     * Asserts that a string contains one keyword.
+     *
+     * @param string $keyword
+     * @param string $string
+     * @param string $message
+     * @param array  $alternativeKeywords
+     */
     public function assertStringContains($keyword, $string, $message = '',
         $alternativeKeywords = null)
     {
@@ -81,17 +90,18 @@ abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
         return $this->assertTrue($contain, $message, $string);
     }
 
-   /**
-    * Asserts that a array contains one of keywords
-    *
-    * Example:
-    * <code>
-    *   $this->assertArrayContainsOneOrMore(array('shampoo','condicionador'), $item);
-    * </code>
-    * @param  array $keywords
-    * @param  array $array
-    * @param  string $message
-    */
+    /**
+     * Asserts that a array contains one of keywords.
+     *
+     * Example:
+     * <code>
+     *   $this->assertArrayContainsOneOrMore(array('shampoo','condicionador'), $item);
+     * </code>
+     *
+     * @param array  $keywords
+     * @param array  $array
+     * @param string $message
+     */
     public function assertArrayContainsOneOrMore($keywords, array $array, $message = '')
     {
         $string = $this->md_implode($array);
@@ -101,7 +111,7 @@ abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
 
     protected function md_implode($array, $glue = ' ')
     {
-        if (is_array ($array)) {
+        if (is_array($array)) {
             $output = '';
             foreach ($array as $v) {
                 $output .= $this->md_implode($v, $glue);

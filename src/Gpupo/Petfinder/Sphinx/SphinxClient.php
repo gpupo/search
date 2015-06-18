@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the sfs package.
+ * This file is part of gpupo/petfinder
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -14,18 +15,17 @@ assert_options(ASSERT_ACTIVE, 1);
 assert_options(ASSERT_WARNING, 0);
 assert_options(ASSERT_QUIET_EVAL, 1);
 
-include(dirname(__FILE__) . '/sphinxapi.php');
+include dirname(__FILE__).'/sphinxapi.php';
 
 /**
- * Acesso a API PHP Oficial do Sphinx
+ * Acesso a API PHP Oficial do Sphinx.
  *
  * @see https://code.google.com/p/sphinxsearch/
  */
 class SphinxClient extends \SphinxClient
 {
     /**
-     *
-     * {@inheritdoc }
+     * {@inheritdoc }.
      *
      * SPH_MATCH_ALL, matches all query words (<b>default mode</b>);
      * SPH_MATCH_ANY, matches any of the query words;
@@ -35,7 +35,6 @@ class SphinxClient extends \SphinxClient
      * SPH_MATCH_FULLSCAN, matches query, forcibly using the "full scan" mode as below.
      *
      * @see http://sphinxsearch.com/docs/current.html#matching-modes Matching modes
-     *
      */
     public function SetMatchMode($mode)
     {
@@ -43,20 +42,20 @@ class SphinxClient extends \SphinxClient
     }
 
     /**
-     * Uso amigavel da definicao de Match Mode
+     * Uso amigavel da definicao de Match Mode.
      *
      * @param string $modeName all|any|phrase|boolean
      */
     public function setMatchModeByModeName($modeName)
     {
-        $modes = array(
+        $modes = [
             'all'       => 0,
             'any'       => 1,
             'phrase'    => 2,
             'boolean'   => 3,
             'extended'  => 4,
             'fullscan'  => 5,
-        );
+        ];
 
         if (array_key_exists($modeName, $modes)) {
             $mode = $modes[$modeName];
@@ -67,7 +66,7 @@ class SphinxClient extends \SphinxClient
     }
 
     /**
-     * Define a ordem de resultados
+     * Define a ordem de resultados.
      *
      * @param string $string
      */
@@ -77,7 +76,7 @@ class SphinxClient extends \SphinxClient
     }
 
     /**
-     * Agrupa resultados por atributo
+     * Agrupa resultados por atributo.
      *
      * @param string $attr
      */
