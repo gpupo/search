@@ -11,7 +11,7 @@ PHP Sphinx faceted search over Official Sphinx searchd client (PHP API) with Ori
 ```PHP
 
 <?php
-use Gpupo\Search\Search\Search;
+use Gpupo\Search;
 use Gpupo\Search\Query\Keywords;
 use Gpupo\Search\Query\Query;
 
@@ -81,14 +81,14 @@ or see the testdox output
          phpunit --testdox | sed "s/.*\[/-&/" | sed 's/.*Gpupo.*/&\'$'\n/g'
 -->
 
-Gpupo\Tests\Search\Search\FacetedSearch
+Gpupo\Tests\Search\FacetedSearch
 
 - [x] Multi queries
 - [x] Group by
 - [x] Simplifica multiplas queries groupby
 - [x] Multiquery com groupby
 
-Gpupo\Tests\Search\Search\Paginator\Paginator
+Gpupo\Tests\Search\Paginator\Paginator
 
 - [x] Resultados possui objeto modelado para paginacao
 - [x] Processa result collection
@@ -100,20 +100,20 @@ Gpupo\Tests\Search\Search\Paginator\Paginator
 - [x] Permite customizacao do range de paginas para navegacao
 - [x] Acesso a valores da paginacao
 
-Gpupo\Tests\Search\Search\Query\Filters
+Gpupo\Tests\Search\Query\Filters
 
 - [x] Filtra por lista de valores de uma chave
 - [x] Filtra por range de valores de uma chave
 - [x] Adiciona um valor a values filters existente
 
-Gpupo\Tests\Search\Search\Query\Keywords
+Gpupo\Tests\Search\Query\Keywords
 
 - [x] Processa palavras chave a partir de string
 - [x] Sucesso com palavras chaves validas
 - [x] Valida string de palavras chave vazias ou menor que o permitido
 - [x] Sucesso ao pesquisar com frases
 
-Gpupo\Tests\Search\Search\Query\Query
+Gpupo\Tests\Search\Query\Query
 
 - [x] Palavras chaves modeladas em objeto
 - [x] Pesquisa a partir de queries modeladas
@@ -131,11 +131,11 @@ Gpupo\Tests\Search\Search\Query\Query
 - [x] Suporte a busca facetada por muitos atributos
 - [x] Evita contagem por atributos duplicada
 
-Gpupo\Tests\Search\Search\Result\Collection
+Gpupo\Tests\Search\Result\Collection
 
 - [x] Resultados com propriedades processadas
 
-Gpupo\Tests\Search\Search\Search
+Gpupo\Tests\Search
 
 - [x] Resultados contendo objetos modelados
 - [x] Pesquisa palavra chave simples
