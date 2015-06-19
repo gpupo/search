@@ -1,5 +1,6 @@
 [![Author](http://img.shields.io/badge/author-@gpupo-blue.svg)](https://twitter.com/gpupo)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/gpupo/search/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/gpupo/search.svg?branch=master)](https://travis-ci.org/gpupo/search)
 
 # Search
 

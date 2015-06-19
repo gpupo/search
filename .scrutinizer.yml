@@ -6,6 +6,6 @@ filter:
         - Resources/*
         - tests/*
         - vendor/*
-        - *sphinxapi.php
+        - src/Sphinx/sphinxapi.php
 
 #Doc: https://scrutinizer-ci.com/docs/configuration/build
