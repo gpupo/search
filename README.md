@@ -1,8 +1,8 @@
 [![Author](http://img.shields.io/badge/author-@gpupo-blue.svg)](https://twitter.com/gpupo)
-[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/gpupo/petfinder/blob/master/LICENSE)
-[![Build Status](https://secure.travis-ci.org/gpupo/petfinder.png?branch=master)](http://travis-ci.org/gpupo/petfinder
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/gpupo/search/blob/master/LICENSE)
+[![Build Status](https://secure.travis-ci.org/gpupo/search.png?branch=master)](http://travis-ci.org/gpupo/search
 
-# Petfinder
+# Search
 
 PHP Sphinx faceted search over Official Sphinx searchd client (PHP API) with Oriented Object results based
 
@@ -11,9 +11,9 @@ PHP Sphinx faceted search over Official Sphinx searchd client (PHP API) with Ori
 ```PHP
 
 <?php
-use Gpupo\Petfinder\Search\Search;
-use Gpupo\Petfinder\Query\Keywords;
-use Gpupo\Petfinder\Query\Query;
+use Gpupo\Search\Search\Search;
+use Gpupo\Search\Query\Keywords;
+use Gpupo\Search\Query\Query;
 
 $keywords = new Keywords;
 $keywords->addKeyword('magic');
@@ -35,14 +35,14 @@ $results->getTotal(); // Itens found
 
 **New!** Check [index.php](https://github.com/gpupo/peccary/blob/master/web/index.php)
 in [peccary project](https://github.com/gpupo/peccary/)
-(Catalog Sandbox with Petfinder component, Sphinx Search and Silex Framework) for more examples.
+(Catalog Sandbox with Search component, Sphinx Search and Silex Framework) for more examples.
 
 
 ## Install
 
 The recommended way to install is [through composer](http://getcomposer.org).
 
-    composer require gpupo/petfinder
+    composer require gpupo/search
 
 ---
 
@@ -81,14 +81,14 @@ or see the testdox output
          phpunit --testdox | sed "s/.*\[/-&/" | sed 's/.*Gpupo.*/&\'$'\n/g'
 -->
 
-Gpupo\Tests\Petfinder\Search\FacetedSearch
+Gpupo\Tests\Search\Search\FacetedSearch
 
 - [x] Multi queries
 - [x] Group by
 - [x] Simplifica multiplas queries groupby
 - [x] Multiquery com groupby
 
-Gpupo\Tests\Petfinder\Search\Paginator\Paginator
+Gpupo\Tests\Search\Search\Paginator\Paginator
 
 - [x] Resultados possui objeto modelado para paginacao
 - [x] Processa result collection
@@ -100,20 +100,20 @@ Gpupo\Tests\Petfinder\Search\Paginator\Paginator
 - [x] Permite customizacao do range de paginas para navegacao
 - [x] Acesso a valores da paginacao
 
-Gpupo\Tests\Petfinder\Search\Query\Filters
+Gpupo\Tests\Search\Search\Query\Filters
 
 - [x] Filtra por lista de valores de uma chave
 - [x] Filtra por range de valores de uma chave
 - [x] Adiciona um valor a values filters existente
 
-Gpupo\Tests\Petfinder\Search\Query\Keywords
+Gpupo\Tests\Search\Search\Query\Keywords
 
 - [x] Processa palavras chave a partir de string
 - [x] Sucesso com palavras chaves validas
 - [x] Valida string de palavras chave vazias ou menor que o permitido
 - [x] Sucesso ao pesquisar com frases
 
-Gpupo\Tests\Petfinder\Search\Query\Query
+Gpupo\Tests\Search\Search\Query\Query
 
 - [x] Palavras chaves modeladas em objeto
 - [x] Pesquisa a partir de queries modeladas
@@ -131,11 +131,11 @@ Gpupo\Tests\Petfinder\Search\Query\Query
 - [x] Suporte a busca facetada por muitos atributos
 - [x] Evita contagem por atributos duplicada
 
-Gpupo\Tests\Petfinder\Search\Result\Collection
+Gpupo\Tests\Search\Search\Result\Collection
 
 - [x] Resultados com propriedades processadas
 
-Gpupo\Tests\Petfinder\Search\Search
+Gpupo\Tests\Search\Search\Search
 
 - [x] Resultados contendo objetos modelados
 - [x] Pesquisa palavra chave simples
@@ -149,7 +149,7 @@ Gpupo\Tests\Petfinder\Search\Search
 - [x] Acesso a resultados em objetos modelados
 - [x] Suporte a multi queries
 
-Gpupo\Tests\Petfinder\Sphinx\SphinxService
+Gpupo\Tests\Search\Sphinx\SphinxService
 
 - [x] Permite acesso aos parametros default
 - [x] Permite definicao de parametros personalizados
@@ -174,13 +174,13 @@ Update command:
 
 RELEASE='21';
 
-lynx --dump --source https://sphinxsearch.googlecode.com/svn/branches/rel${RELEASE}/api/sphinxapi.php > src/Gpupo/Petfinder/Sphinx/sphinxapi.php
+lynx --dump --source https://sphinxsearch.googlecode.com/svn/branches/rel${RELEASE}/api/sphinxapi.php > src/Gpupo/Search/Sphinx/sphinxapi.php
 
 ```
 
 ----
 
-[Contributors](https://github.com/gpupo/petfinder/graphs/contributors)
+[Contributors](https://github.com/gpupo/search/graphs/contributors)
 
 ## License
 
@@ -188,6 +188,6 @@ MIT, see LICENSE.
 
 ## Links
 
-* [Petfinder Composer Package](https://packagist.org/packages/gpupo/petfinder) on packagist.org
+* [Search Composer Package](https://packagist.org/packages/gpupo/search) on packagist.org
 * [What faceting means in Sphinx](http://sphinxsearch.com/blog/2013/06/21/faceted-search-with-sphinx/).
 * [Search Patterns - A Mapmaker’s Manifesto](http://tm.durusau.net/?p=602) by Peter Moreville and Jeffrey Callender

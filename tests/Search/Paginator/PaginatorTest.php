@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Tests\Petfinder\Search\Paginator;
+namespace Gpupo\Tests\Search\Search\Paginator;
 
-use Gpupo\Petfinder\Search\Paginator\Paginator;
-use Gpupo\Petfinder\Search\Query\Keywords;
-use Gpupo\Petfinder\Search\Query\Query;
-use Gpupo\Petfinder\Search\Search;
-use Gpupo\Tests\Petfinder\TestCaseAbstract;
+use Gpupo\Search\Search\Paginator\Paginator;
+use Gpupo\Search\Search\Query\Keywords;
+use Gpupo\Search\Search\Query\Query;
+use Gpupo\Search\Search\Search;
+use Gpupo\Tests\Search\TestCaseAbstract;
 
 class PaginatorTest extends TestCaseAbstract
 {
@@ -39,9 +39,9 @@ class PaginatorTest extends TestCaseAbstract
         }
 
         $results = $this->getResultCollection('shampoo');
-        $this->assertInstanceOf('\Gpupo\Petfinder\Search\Paginator\PaginableInterface', $results);
-        $this->assertInstanceOf('\Gpupo\Petfinder\Search\Paginator\PaginatorInterface', $results->getPaginator());
-        $this->assertInstanceOf('\Gpupo\Petfinder\Search\Paginator\Paginator', $results->getPaginator());
+        $this->assertInstanceOf('\Gpupo\Search\Search\Paginator\PaginableInterface', $results);
+        $this->assertInstanceOf('\Gpupo\Search\Search\Paginator\PaginatorInterface', $results->getPaginator());
+        $this->assertInstanceOf('\Gpupo\Search\Search\Paginator\Paginator', $results->getPaginator());
 
         return $results;
     }
@@ -92,7 +92,7 @@ class PaginatorTest extends TestCaseAbstract
         $page, $limit, $expectedPages)
     {
         $paginator = new Paginator();
-        $this->assertInstanceOf('\Gpupo\Petfinder\Search\Paginator\PaginatorInterface', $paginator);
+        $this->assertInstanceOf('\Gpupo\Search\Search\Paginator\PaginatorInterface', $paginator);
         $paginator->paginate($resultados, $page, $limit);
 
         $this->assertEquals($expectedPages, $paginator->getPagesCount());

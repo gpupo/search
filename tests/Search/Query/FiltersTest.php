@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Tests\Petfinder\Search\Query;
+namespace Gpupo\Tests\Search\Search\Query;
 
-use Gpupo\Petfinder\Search\Query\Filters;
-use Gpupo\Tests\Petfinder\TestCaseAbstract;
+use Gpupo\Search\Search\Query\Filters;
+use Gpupo\Tests\Search\TestCaseAbstract;
 
 class FiltersTest extends TestCaseAbstract
 {

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Tests\Petfinder\Sphinx;
+namespace Gpupo\Tests\Search\Sphinx;
 
-use Gpupo\Petfinder\Sphinx\SphinxClient;
-use Gpupo\Petfinder\Sphinx\SphinxService;
-use Gpupo\Tests\Petfinder\TestCaseAbstract;
+use Gpupo\Search\Sphinx\SphinxClient;
+use Gpupo\Search\Sphinx\SphinxService;
+use Gpupo\Tests\Search\TestCaseAbstract;
 
 class SphinxServiceTest extends TestCaseAbstract
 {

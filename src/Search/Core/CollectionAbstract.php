@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Petfinder\Search\Core;
+namespace Gpupo\Search\Search\Core;
 
 use Doctrine\Common\Collections\ArrayCollection;
 

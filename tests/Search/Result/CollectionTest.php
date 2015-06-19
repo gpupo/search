@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Tests\Petfinder\Search\Result;
+namespace Gpupo\Tests\Search\Search\Result;
 
-use Gpupo\Petfinder\Search\Result\Collection;
-use Gpupo\Petfinder\Search\Search;
-use Gpupo\Tests\Petfinder\TestCaseAbstract;
+use Gpupo\Search\Search\Result\Collection;
+use Gpupo\Search\Search\Search;
+use Gpupo\Tests\Search\TestCaseAbstract;
 
 class CollectionTest extends TestCaseAbstract
 {
@@ -29,12 +29,12 @@ class CollectionTest extends TestCaseAbstract
         $collection = new Collection();
         $results = Search::getInstance()->getResultsByKeyword($keyword, $collection);
 
-        $this->assertInstanceOf('\Gpupo\Petfinder\Search\Result\CollectionInterface', $results);
+        $this->assertInstanceOf('\Gpupo\Search\Search\Result\CollectionInterface', $results);
 
         $this->assertGreaterThan(2, $results->count());
 
         foreach ($results->toArray() as $produto) {
-            $this->assertInstanceOf('\Gpupo\Petfinder\Search\Result\ItemInterface', $produto);
+            $this->assertInstanceOf('\Gpupo\Search\Search\Result\ItemInterface', $produto);
         }
 
         return $results;

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Petfinder\Sphinx;
+namespace Gpupo\Search\Sphinx;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -76,7 +76,7 @@ class SphinxService
     /**
      * Acesso ao Cliente Sphinx Server.
      *
-     * @return Gpupo\Petfinder\Sphinx\SphinxClient
+     * @return Gpupo\Search\Sphinx\SphinxClient
      */
     public function getClient()
     {
@@ -90,7 +90,7 @@ class SphinxService
     /**
      * Semelhante a *getClient()* mas com reset.
      *
-     * @return Gpupo\Petfinder\Sphinx\SphinxClient
+     * @return Gpupo\Search\Sphinx\SphinxClient
      */
     public function getFreshClient()
     {

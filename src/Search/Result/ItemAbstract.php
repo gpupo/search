@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Petfinder\Search\Result;
+namespace Gpupo\Search\Search\Result;
 
-abstract class ItemAbstract extends \Gpupo\Petfinder\Search\Core\CollectionAbstract
+abstract class ItemAbstract extends \Gpupo\Search\Search\Core\CollectionAbstract
 {
     /**
      * Acesso aos atributos fornecidos pelo SphinxSearch.

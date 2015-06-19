@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Petfinder\Search\Query;
+namespace Gpupo\Search\Search\Query;
 
-use Gpupo\Petfinder\Search\Core\CollectionAbstract;
-use Gpupo\Petfinder\Search\Paginator\PaginableInterface;
-use Gpupo\Petfinder\Search\Paginator\PaginatorInterface;
+use Gpupo\Search\Search\Core\CollectionAbstract;
+use Gpupo\Search\Search\Paginator\PaginableInterface;
+use Gpupo\Search\Search\Paginator\PaginatorInterface;
 
 abstract class QueryAbstract extends CollectionAbstract implements PaginableInterface
 {
@@ -37,7 +37,7 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     * @param \Gpupo\Petfinder\Search\Query\KeywordsInterface $keywords
+     * @param \Gpupo\Search\Search\Query\KeywordsInterface $keywords
      */
     public function __construct(KeywordsInterface $keywords = null)
     {
@@ -57,7 +57,7 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     /**
      * Objeto de pesquisa.
      *
-     * @param \Gpupo\Petfinder\Search\Query\KeywordsInterface $keyword
+     * @param \Gpupo\Search\Search\Query\KeywordsInterface $keyword
      *
      * @return type
      */
@@ -275,7 +275,7 @@ abstract class QueryAbstract extends CollectionAbstract implements PaginableInte
     }
 
     /**
-     * @return \Gpupo\Petfinder\Search\Paginator\PaginatorInterface|bool
+     * @return \Gpupo\Search\Search\Paginator\PaginatorInterface|bool
      */
     public function getPaginator()
     {
