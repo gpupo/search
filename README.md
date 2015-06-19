@@ -1,6 +1,5 @@
 [![Author](http://img.shields.io/badge/author-@gpupo-blue.svg)](https://twitter.com/gpupo)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/gpupo/search/blob/master/LICENSE)
-[![Build Status](https://secure.travis-ci.org/gpupo/search.png?branch=master)](http://travis-ci.org/gpupo/search
 
 # Search
 
@@ -174,7 +173,7 @@ Update command:
 
 RELEASE='21';
 
-lynx --dump --source https://sphinxsearch.googlecode.com/svn/branches/rel${RELEASE}/api/sphinxapi.php > src/Gpupo/Search/Sphinx/sphinxapi.php
+lynx --dump --source https://sphinxsearch.googlecode.com/svn/branches/rel${RELEASE}/api/sphinxapi.php > src//Sphinx/sphinxapi.php
 
 ```
 
