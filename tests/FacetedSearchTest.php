@@ -13,7 +13,6 @@ namespace Gpupo\Tests\Search;
 
 use Gpupo\Search\Search;
 use Gpupo\Search\Sphinx\SphinxService;
-use Gpupo\Tests\Search\TestCaseAbstract;
 
 class FacetedSearchTest extends TestCaseAbstract
 {

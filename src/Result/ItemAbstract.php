@@ -26,7 +26,7 @@ abstract class ItemAbstract extends \Gpupo\Search\Core\CollectionAbstract
     /**
      * Acesso a um atributo específico.
      *
-     * @param string $chave
+     * @param string $key
      */
     protected function getAtributo($key)
     {
@@ -68,6 +68,9 @@ abstract class ItemAbstract extends \Gpupo\Search\Core\CollectionAbstract
         return $this->find($method);
     }
 
+    /**
+     * @param string $key
+     */
     public function find($key)
     {
         if ($attr = $this->getAtributo($key)) {
