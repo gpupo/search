@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Petfinder\Search;
+namespace Gpupo\Search\Search;
 
-use Gpupo\Petfinder\Search\Paginator\Paginator;
-use Gpupo\Petfinder\Search\Query\QueryInterface;
-use Gpupo\Petfinder\Search\Result\Collection;
-use Gpupo\Petfinder\Search\Result\CollectionInterface;
-use Gpupo\Petfinder\Sphinx\SphinxService;
+use Gpupo\Search\Search\Paginator\Paginator;
+use Gpupo\Search\Search\Query\QueryInterface;
+use Gpupo\Search\Search\Result\Collection;
+use Gpupo\Search\Search\Result\CollectionInterface;
+use Gpupo\Search\Sphinx\SphinxService;
 
 class Search  extends SearchAbstract implements SearchInterface
 {

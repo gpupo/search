@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Tests\Petfinder\Search\Query;
+namespace Gpupo\Tests\Search\Search\Query;
 
-use Gpupo\Petfinder\Search\Query\Keywords;
-use Gpupo\Petfinder\Search\Query\Query;
-use Gpupo\Petfinder\Search\Search;
-use Gpupo\Tests\Petfinder\TestCaseAbstract;
+use Gpupo\Search\Search\Query\Keywords;
+use Gpupo\Search\Search\Query\Query;
+use Gpupo\Search\Search\Search;
+use Gpupo\Tests\Search\TestCaseAbstract;
 
 class KeywordsTest extends TestCaseAbstract
 {
     /**
-     * @cover \Gpupo\Petfinder\Search\Query\Keywords
+     * @cover \Gpupo\Search\Search\Query\Keywords
      */
     public function testProcessaPalavrasChaveAPartirDeString()
     {
@@ -74,7 +74,7 @@ class KeywordsTest extends TestCaseAbstract
 
         $collection = Search::getInstance()->findByQuery($query);
 
-        $this->assertInstanceOf('\Gpupo\Petfinder\Search\Result\Collection', $collection);
+        $this->assertInstanceOf('\Gpupo\Search\Search\Result\Collection', $collection);
         $this->assertGreaterThan(5, $collection->getTotal());
         $this->assertGreaterThan(5, $collection->getTotalFound());
         $this->assertInternalType('integer', $collection->getTotal());

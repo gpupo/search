@@ -1,5 +1,5 @@
 {
-    "name": "gpupo/petfinder",
+    "name": "gpupo/search",
     "description": "PHP Sphinx faceted search over Official Sphinx searchd client (PHP API) with Oriented Object results based",
     "keywords": ["sphinx", "faceted", "search", "API", "client", "facet"],
     "license": "MIT",
@@ -15,12 +15,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Gpupo\\Petfinder\\": "src"
+            "Gpupo\\Search\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Gpupo\\Tests\\Petfinder\\": "tests"
+            "Gpupo\\Tests\\Search\\": "tests"
         }
     },
     "require-dev": {

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Tests\Petfinder\Search;
+namespace Gpupo\Tests\Search\Search;
 
-use Gpupo\Petfinder\Search\Query\Keywords;
-use Gpupo\Petfinder\Search\Query\Query;
-use Gpupo\Petfinder\Search\Result\Collection;
-use Gpupo\Petfinder\Search\Search;
-use Gpupo\Tests\Petfinder\TestCaseAbstract;
+use Gpupo\Search\Search\Query\Keywords;
+use Gpupo\Search\Search\Query\Query;
+use Gpupo\Search\Search\Result\Collection;
+use Gpupo\Search\Search\Search;
+use Gpupo\Tests\Search\TestCaseAbstract;
 
 class SearchTest extends TestCaseAbstract
 {
@@ -30,10 +30,10 @@ class SearchTest extends TestCaseAbstract
 
         $collection = new Collection();
         $results = Search::getInstance()->getResultsByKeyword($keyword, $collection);
-        $this->assertInstanceOf('\Gpupo\Petfinder\Search\Result\CollectionInterface', $results);
+        $this->assertInstanceOf('\Gpupo\Search\Search\Result\CollectionInterface', $results);
 
         foreach ($results->toArray() as $item) {
-            $this->assertInstanceOf('\Gpupo\Petfinder\Search\Result\ItemInterface', $item);
+            $this->assertInstanceOf('\Gpupo\Search\Search\Result\ItemInterface', $item);
         }
     }
 
@@ -230,7 +230,7 @@ class SearchTest extends TestCaseAbstract
     }
 
     /**
-     * @cover \Gpupo\Petfinder\Search\Result\Collection
+     * @cover \Gpupo\Search\Search\Result\Collection
      */
     public function testAcessoAResultadosEmObjetosModelados()
     {
@@ -253,7 +253,7 @@ class SearchTest extends TestCaseAbstract
             0
         );
 
-        $this->assertInstanceOf('\Gpupo\Petfinder\Search\Result\Collection', $collection);
+        $this->assertInstanceOf('\Gpupo\Search\Search\Result\Collection', $collection);
         $this->assertGreaterThan(10, $collection->getTotal());
         $this->assertGreaterThan(10, $collection->getTotalFound());
         $this->assertInternalType('integer', $collection->getTotal());

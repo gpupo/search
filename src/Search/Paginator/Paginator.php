@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Petfinder\Search\Paginator;
+namespace Gpupo\Search\Search\Paginator;
 
-use Gpupo\Petfinder\Search\Result\CollectionInterface;
+use Gpupo\Search\Search\Result\CollectionInterface;
 
 class Paginator extends PaginatorAbstract implements PaginatorInterface
 {

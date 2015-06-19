@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Petfinder\Search;
+namespace Gpupo\Search\Search;
 
-use Gpupo\Petfinder\Search\Result\CountableCollection;
+use Gpupo\Search\Search\Result\CountableCollection;
 
 /**
  * Comunicacao com o SphinxClient.
@@ -38,9 +38,9 @@ abstract class SearchAbstract
     /**
      * Executa Queries.
      *
-     * @see \Gpupo\Petfinder\Search\Query\FiltersAbstract::toArray()          Filter Array Sintaxe
-     * @see \Gpupo\Petfinder\Search\Query\QueryAbstract::getQueries()         Query Array Sintaxe
-     * @see \Gpupo\Petfinder\Search\Query\QueryAbstract::getFieldWeights()    Query Array Sintaxe
+     * @see \Gpupo\Search\Search\Query\FiltersAbstract::toArray()          Filter Array Sintaxe
+     * @see \Gpupo\Search\Search\Query\QueryAbstract::getQueries()         Query Array Sintaxe
+     * @see \Gpupo\Search\Search\Query\QueryAbstract::getFieldWeights()    Query Array Sintaxe
      *
      * @param array $filter       Search filter
      * @param array $queries      Search query

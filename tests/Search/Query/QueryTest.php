@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of gpupo/petfinder
+ * This file is part of gpupo/search
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Tests\Petfinder\Search\Query;
+namespace Gpupo\Tests\Search\Search\Query;
 
-use Gpupo\Petfinder\Search\Query\Filters;
-use Gpupo\Petfinder\Search\Query\FiltersInterface;
-use Gpupo\Petfinder\Search\Query\Keywords;
-use Gpupo\Petfinder\Search\Query\KeywordsInterface;
-use Gpupo\Petfinder\Search\Query\Query;
-use Gpupo\Petfinder\Search\Query\QueryInterface;
-use Gpupo\Petfinder\Search\Search;
-use Gpupo\Tests\Petfinder\TestCaseAbstract;
+use Gpupo\Search\Search\Query\Filters;
+use Gpupo\Search\Search\Query\FiltersInterface;
+use Gpupo\Search\Search\Query\Keywords;
+use Gpupo\Search\Search\Query\KeywordsInterface;
+use Gpupo\Search\Search\Query\Query;
+use Gpupo\Search\Search\Query\QueryInterface;
+use Gpupo\Search\Search\Search;
+use Gpupo\Tests\Search\TestCaseAbstract;
 
 class QueryTest extends TestCaseAbstract
 {
@@ -58,7 +58,7 @@ class QueryTest extends TestCaseAbstract
 
         $collection = Search::getInstance()->findByQuery($query);
 
-        $this->assertInstanceOf('\Gpupo\Petfinder\Search\Result\Collection', $collection);
+        $this->assertInstanceOf('\Gpupo\Search\Search\Result\Collection', $collection);
         $this->assertGreaterThan(2, $collection->getTotal());
         $this->assertGreaterThan(2, $collection->getTotalFound());
         $this->assertInternalType('integer', $collection->getTotal());
@@ -72,7 +72,7 @@ class QueryTest extends TestCaseAbstract
      */
     public function testQueriesPossuemAtributosModeladosEControlados(QueryInterface $query)
     {
-        $this->assertInstanceOf('\Gpupo\Petfinder\Search\Query\QueryInterface', $query);
+        $this->assertInstanceOf('\Gpupo\Search\Search\Query\QueryInterface', $query);
         $this->assertInternalType('array', $query->getQueries());
         $this->assertGreaterThanOrEqual(1, $query->getQueries());
     }
