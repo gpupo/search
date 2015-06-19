@@ -20,6 +20,8 @@ abstract class SearchAbstract
 {
     /**
      * Facade para Single query, obtendo apenas os resultados (matches).
+     *
+     * @param string $index
      */
     public function search($index, array $filters = null,
         array $queries = null, array $fieldWeights = null,
