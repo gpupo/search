@@ -12,7 +12,7 @@
 namespace Gpupo\Tests\Search\Result;
 
 use Gpupo\Search\Result\Collection;
-use Gpupo\Search;
+use Gpupo\Search\Search;
 use Gpupo\Tests\Search\TestCaseAbstract;
 
 class CollectionTest extends TestCaseAbstract

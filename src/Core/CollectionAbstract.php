@@ -11,9 +11,9 @@
 
 namespace Gpupo\Search\Core;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Gpupo\Common\Entity\CollectionAbstract as Common;
 
-abstract class CollectionAbstract extends ArrayCollection
+abstract class CollectionAbstract extends Common
 {
     protected static $_instance;
 

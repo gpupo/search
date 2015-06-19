@@ -142,7 +142,7 @@ abstract class CollectionAbstract  extends CoreCollectionAbstract
 
     public function toArray()
     {
-        return $this->get('itens');
+        return (array) $this->get('itens');
     }
 
     /**
