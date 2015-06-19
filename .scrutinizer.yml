@@ -1,0 +1,11 @@
+inherit: true
+checks:
+    php: true
+filter:
+    excluded_paths:
+        - Resources/*
+        - tests/*
+        - vendor/*
+        - *sphinxapi.php
+
+#Doc: https://scrutinizer-ci.com/docs/configuration/build
