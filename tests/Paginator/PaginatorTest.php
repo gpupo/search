@@ -14,7 +14,7 @@ namespace Gpupo\Tests\Search\Paginator;
 use Gpupo\Search\Paginator\Paginator;
 use Gpupo\Search\Query\Keywords;
 use Gpupo\Search\Query\Query;
-use Gpupo\Search;
+use Gpupo\Search\Search;
 use Gpupo\Tests\Search\TestCaseAbstract;
 
 class PaginatorTest extends TestCaseAbstract

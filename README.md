@@ -11,7 +11,7 @@ PHP Sphinx faceted search over Official Sphinx searchd client (PHP API) with Ori
 ```PHP
 
 <?php
-use Gpupo\Search;
+use Gpupo\Search\Search;
 use Gpupo\Search\Query\Keywords;
 use Gpupo\Search\Query\Query;
 
@@ -31,12 +31,6 @@ $results = Search::getInstance()->findByQuery($query);
 $results->getTotal(); // Itens found
 
 ```
-## Sandbox
-
-**New!** Check [index.php](https://github.com/gpupo/peccary/blob/master/web/index.php)
-in [peccary project](https://github.com/gpupo/peccary/)
-(Catalog Sandbox with Search component, Sphinx Search and Silex Framework) for more examples.
-
 
 ## Install
 

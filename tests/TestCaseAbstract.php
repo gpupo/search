@@ -45,8 +45,8 @@ abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
     {
         return [
             'host'      => $this->getSphinxHost(),
-            'port'      => SPHINX_PORT,
-            'timeout'   => SPHINX_TIMEOUT,
+            'port'      => $this->getConstant('SPHINX_PORT', '9313'),
+            'timeout'   => $this->getConstant('SPHINX_TIMEOUT', '5'),
         ];
     }
 

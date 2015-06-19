@@ -203,8 +203,9 @@ abstract class SearchAbstract
             $fieldWeights, $limit, $offset);
 
         if (is_array($result)) {
+            $i = 0;
+
             if ($countableAttributes) {
-                $i = 0;
                 foreach ($countableAttributes as $attributeName) {
                     $i++;
                     $result[0]['attributes']['countable'][$attributeName] = new CountableCollection($result[$i], $attributeName);

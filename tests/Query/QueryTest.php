@@ -17,7 +17,7 @@ use Gpupo\Search\Query\Keywords;
 use Gpupo\Search\Query\KeywordsInterface;
 use Gpupo\Search\Query\Query;
 use Gpupo\Search\Query\QueryInterface;
-use Gpupo\Search;
+use Gpupo\Search\Search;
 use Gpupo\Tests\Search\TestCaseAbstract;
 
 class QueryTest extends TestCaseAbstract

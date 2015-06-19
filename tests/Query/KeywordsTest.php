@@ -13,7 +13,7 @@ namespace Gpupo\Tests\Search\Query;
 
 use Gpupo\Search\Query\Keywords;
 use Gpupo\Search\Query\Query;
-use Gpupo\Search;
+use Gpupo\Search\Search;
 use Gpupo\Tests\Search\TestCaseAbstract;
 
 class KeywordsTest extends TestCaseAbstract
