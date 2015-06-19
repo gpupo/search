@@ -11,7 +11,9 @@
 
 namespace Gpupo\Search\Result;
 
-abstract class ItemAbstract extends \Gpupo\Search\Core\CollectionAbstract
+use Gpupo\Common\Entity\CollectionAbstract;
+
+abstract class ItemAbstract extends CollectionAbstract
 {
     /**
      * Acesso aos atributos fornecidos pelo SphinxSearch.
@@ -47,25 +49,6 @@ abstract class ItemAbstract extends \Gpupo\Search\Core\CollectionAbstract
         $string .= "\n";
 
         return $string;
-    }
-
-    /**
-     * Magic method that implements.
-     *
-     * @param string $method
-     * @param array  $args
-     *
-     * @throws \BadMethodCallException
-     *
-     * @return mixed
-     */
-    public function __call($method, $args)
-    {
-        if (substr($method, 0, 3) === 'get') {
-            return  $this->get($this->__calculateFieldName($method));
-        }
-
-        return $this->find($method);
     }
 
     /**
