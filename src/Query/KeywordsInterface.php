@@ -11,9 +11,7 @@
 
 namespace Gpupo\Search\Query;
 
-use Gpupo\Search\Core\RegisterableInterface;
-
-interface KeywordsInterface extends RegisterableInterface
+interface KeywordsInterface
 {
     public function addKeyword($string);
     public function readString($string);

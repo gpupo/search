@@ -11,24 +11,12 @@
 
 namespace Gpupo\Search\Query;
 
-use Gpupo\Search\Core\CollectionAbstract;
+use Gpupo\Common\Entity\CollectionAbstract;
 use Gpupo\Search\Paginator\PaginableInterface;
 use Gpupo\Search\Paginator\PaginatorInterface;
 
 abstract class QueryAbstract extends CollectionAbstract implements PaginableInterface
 {
-    protected static $_instance;
-
-    public static function getInstance()
-    {
-        if (!isset(self::$_instance)) {
-            $class = get_called_class();
-            self::$_instance = new $class();
-        }
-
-        return self::$_instance;
-    }
-
     public function set($key, $value)
     {
         parent::set($key, $value);

@@ -11,13 +11,13 @@
 
 namespace Gpupo\Search\Result;
 
-use Gpupo\Search\Core\CollectionAbstract as CoreCollectionAbstract;
 use Gpupo\Search\Paginator\PaginatorInterface;
+use Gpupo\Common\Entity\CollectionAbstract ;
 
 /**
  * Conjunto de Itens de resultado.
  */
-abstract class CollectionAbstract  extends CoreCollectionAbstract
+abstract class AbstractCollection extends CollectionAbstract
 {
     /**
      * Lista de documentos encontrados.

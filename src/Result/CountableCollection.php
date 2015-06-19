@@ -31,7 +31,7 @@ class CountableCollection extends CollectionAbstract
     {
         $this->setAttributeName($attributeName);
 
-        return parent::__construct($array);
+        parent::__construct($array);
     }
     /**
      * Nome do atributo que recebeu a contagem.

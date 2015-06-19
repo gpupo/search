@@ -15,22 +15,6 @@ use Gpupo\Search\Sphinx\SphinxService;
 
 abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
 {
-    protected function getConstant($name, $default = false)
-    {
-        if (defined($name)) {
-            return constant($name);
-        }
-
-        return $default;
-    }
-
-    protected function hasConstant($name)
-    {
-        $value = $this->getConstant($name);
-
-        return empty($value) ? false : true;
-    }
-
     protected function getSphinxHost()
     {
         return $this->getConstant('SPHINX_HOST');

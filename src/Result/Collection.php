@@ -16,7 +16,7 @@ use Gpupo\Search\Paginator\PaginableInterface;
 /**
  * {@inheritDoc}
  */
-class Collection  extends CollectionAbstract
+final class Collection  extends AbstractCollection
     implements CollectionInterface,PaginableInterface
 {
 }

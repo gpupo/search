@@ -11,8 +11,6 @@
 
 namespace Gpupo\Search\Query;
 
-use Gpupo\Search\Core\RegisterableInterface;
-
-interface FiltersInterface extends RegisterableInterface
+interface FiltersInterface
 {
 }
