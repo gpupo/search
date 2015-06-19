@@ -12,8 +12,10 @@
 namespace Gpupo\Tests\Search;
 
 use Gpupo\Search\Sphinx\SphinxService;
+use Gpupo\Tests\Common\TestCaseAbstract as Common;
 
-abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
+
+abstract class TestCaseAbstract extends Common
 {
     protected function getSphinxHost()
     {
