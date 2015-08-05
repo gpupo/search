@@ -116,7 +116,9 @@ abstract class AbstractCollection extends CollectionAbstract
                 unset($array[0]['matches']);
                 $array = $array[0];
             } else {
-                return parent::__construct($array);
+                parent::__construct($array);
+
+                return $this;
             }
 
             foreach ($matches as $result) {
@@ -125,7 +127,9 @@ abstract class AbstractCollection extends CollectionAbstract
 
             $array['itens'] = $list;
 
-            return parent::__construct($array);
+            parent::__construct($array);
+
+            return $this;
         }
     }
 
