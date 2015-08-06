@@ -4,7 +4,7 @@
     "keywords": ["sphinx", "faceted", "search", "API", "client", "facet"],
     "license": "MIT",
     "require": {
-        "php": ">=5.4",
+        "php": ">=5.5",
         "gpupo/common": "~1.4",
         "psr/log": "~1.0",
         "zendframework/zend-validator": "2.*",
